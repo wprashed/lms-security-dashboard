@@ -194,8 +194,10 @@ const secureHtml = `<!DOCTYPE html>
 
     <div id="auth-card" class="relative max-w-md w-full ui-card rounded-3xl p-8 shadow-2xl space-y-6 border ui-border">
       <div class="text-center space-y-3">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-3xl mx-auto shadow-md">
-          🔒
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 mx-auto shadow-md">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
         </div>
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-sky-500/10 text-sky-500 border border-sky-500/20 whitespace-nowrap">
           <span>AES-256-GCM Encrypted</span>
@@ -212,8 +214,13 @@ const secureHtml = `<!DOCTYPE html>
           <div class="relative">
             <input type="password" id="input-password" placeholder="Enter dashboard password..." required
               class="w-full ui-input border ui-border focus:border-sky-500 rounded-xl px-4 py-3 text-sm ui-title placeholder:ui-faint focus:outline-none transition pr-10 shadow-sm">
-            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 ui-muted hover:ui-title text-sm focus:outline-none">
-              <span id="eye-icon">👁️</span>
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3.5 ui-muted hover:ui-title focus:outline-none" aria-label="Toggle password visibility">
+              <span id="eye-icon">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </span>
             </button>
           </div>
         </div>
@@ -226,14 +233,26 @@ const secureHtml = `<!DOCTYPE html>
         </div>
 
         <div id="auth-error-msg" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 text-xs font-medium flex items-center gap-2">
-          <span>⚠️</span>
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+          </svg>
           <span>Incorrect password. Access denied.</span>
         </div>
 
         <button type="submit" id="btn-unlock"
           class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-sky-500/25 flex items-center justify-center gap-2">
-          <span id="unlock-spinner" class="hidden animate-spin">⏳</span>
-          <span id="unlock-btn-text">🔓 Decrypt & Access Dashboard</span>
+          <span id="unlock-spinner" class="hidden">
+            <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+          </span>
+          <span id="unlock-btn-icon">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+            </svg>
+          </span>
+          <span id="unlock-btn-text">Decrypt & Access Dashboard</span>
         </button>
       </form>
     </div>
@@ -298,15 +317,18 @@ const secureHtml = `<!DOCTYPE html>
       return dec.decode(decrypted);
     }
 
+    const SVG_EYE = \`<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>\`;
+    const SVG_EYE_SLASH = \`<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" /></svg>\`;
+
     function togglePasswordVisibility() {
       const inp = document.getElementById('input-password');
       const eye = document.getElementById('eye-icon');
       if (inp.type === 'password') {
         inp.type = 'text';
-        eye.textContent = '🙈';
+        eye.innerHTML = SVG_EYE_SLASH;
       } else {
         inp.type = 'password';
-        eye.textContent = '👁️';
+        eye.innerHTML = SVG_EYE;
       }
     }
 
@@ -316,10 +338,12 @@ const secureHtml = `<!DOCTYPE html>
       const errorBox = document.getElementById('auth-error-msg');
       const btnText = document.getElementById('unlock-btn-text');
       const spinner = document.getElementById('unlock-spinner');
+      const btnIcon = document.getElementById('unlock-btn-icon');
       const card = document.getElementById('auth-card');
 
       errorBox.classList.add('hidden');
       btnText.textContent = 'Decrypting...';
+      if (btnIcon) btnIcon.classList.add('hidden');
       spinner.classList.remove('hidden');
 
       try {
@@ -350,7 +374,8 @@ const secureHtml = `<!DOCTYPE html>
         card.classList.add('shake');
         setTimeout(() => card.classList.remove('shake'), 450);
       } finally {
-        btnText.textContent = '🔓 Decrypt & Access Dashboard';
+        btnText.textContent = 'Decrypt & Access Dashboard';
+        if (btnIcon) btnIcon.classList.remove('hidden');
         spinner.classList.add('hidden');
       }
     }
