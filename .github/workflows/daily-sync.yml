@@ -1,0 +1,48 @@
+name: Daily LMS Security Sync
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # Daily at 09:00 UTC
+  workflow_dispatch:      # Manual trigger
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'daily-sync'
+  cancel-in-progress: true
+
+jobs:
+  update-dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run LMS Security Update Pipeline
+        run: |
+          python3 scripts/update_pipeline.py
+
+      - name: Commit and Push if Changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add index.html data/ scripts/
+            git commit -m "chore(sync): automated daily vulnerability dataset update [skip ci]"
+            git push
+          else
+            echo "No new vulnerabilities published today. All records are up to date."
+          fi

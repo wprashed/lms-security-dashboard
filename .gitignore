@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/*.log
+*.log
+
+# Node & Python
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
