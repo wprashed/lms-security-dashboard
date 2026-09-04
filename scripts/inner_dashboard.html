@@ -31,10 +31,10 @@
     <div class="mt-4 flex items-center justify-between p-2.5 rounded-xl ui-subcard border ui-border">
       <div class="flex items-center gap-2 whitespace-nowrap">
         <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-400 opacity-60"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-neutral-400"></span>
         </span>
-        <span class="text-[11px] font-semibold text-emerald-500">Daily Sync Active</span>
+        <span class="text-[11px] font-semibold ui-title">Daily Sync Active</span>
       </div>
       <span class="text-[10px] font-mono ui-muted ui-card px-2 py-0.5 rounded border ui-border whitespace-nowrap">__TOTAL_RECORDS__ CVEs</span>
     </div>
@@ -188,7 +188,7 @@
       <div class="flex items-center gap-3">
         <div class="hidden md:flex items-center gap-2 text-xs font-medium">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ui-card border ui-border text-[11px] ui-muted">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse"></span>
             <span>NVD 2.0 Feed</span>
           </span>
         </div>
@@ -213,7 +213,7 @@
       <div class="text-center max-w-4xl mx-auto space-y-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold ui-subcard border ui-border shadow-sm">
           <span>Automated Daily Security Intelligence</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse"></span>
           <span class="font-mono font-bold">__TOTAL_RECORDS__ Normalized CVEs</span>
         </div>
 
@@ -435,9 +435,9 @@
             <p class="text-xs ui-muted">Surge in 2024 & 2026 driven by Wordfence & Patchstack bug bounty disclosures</p>
           </div>
           <div class="flex items-center gap-4 text-xs font-semibold">
-            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('Tutor LMS')"><span class="w-3 h-3 rounded-full bg-slate-500"></span> <span class="ui-title">Tutor LMS</span></span>
-            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('LearnPress')"><span class="w-3 h-3 rounded-full bg-slate-400"></span> <span class="ui-title">LearnPress</span></span>
-            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('LearnDash')"><span class="w-3 h-3 rounded-full bg-slate-300"></span> <span class="ui-title">LearnDash</span></span>
+            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('Tutor LMS')"><span class="w-3 h-3 rounded-full" style="background-color: var(--text-title);"></span> <span class="ui-title">Tutor LMS</span></span>
+            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('LearnPress')"><span class="w-3 h-3 rounded-full" style="background-color: var(--text-muted);"></span> <span class="ui-title">LearnPress</span></span>
+            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('LearnDash')"><span class="w-3 h-3 rounded-full" style="background-color: var(--text-faint);"></span> <span class="ui-title">LearnDash</span></span>
           </div>
         </div>
 
@@ -525,7 +525,7 @@
 
           <div class="relative w-full lg:w-80">
             <input type="text" id="db-search" oninput="runFilter()" placeholder="Search CVE, SQLi, REST, parameter..." 
-              class="w-full ui-input border ui-border text-xs px-3.5 py-2.5 rounded-xl ui-title placeholder:ui-faint focus:outline-none focus:border-sky-500 transition">
+              class="w-full ui-input border ui-border text-xs px-3.5 py-2.5 rounded-xl ui-title placeholder:ui-faint focus:outline-none focus:border-neutral-400 transition">
             <button onclick="clearSearch()" id="btn-clear-search" class="absolute right-3 top-2.5 ui-muted hover:ui-title text-xs hidden">
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -683,7 +683,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-slate-400 space-y-3 border ui-border shadow-sm">
+        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-neutral-400 space-y-3 border ui-border shadow-sm">
           <div class="flex justify-between items-start">
             <span class="text-xs font-bold ui-title">LearnPress REST SQLi</span>
             <span class="px-2 py-0.5 ui-subcard font-mono font-bold text-xs rounded border ui-border ui-title">CVSS 10.0</span>
@@ -698,7 +698,7 @@
           </div>
         </div>
 
-        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-slate-400 space-y-3 border ui-border shadow-sm">
+        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-neutral-400 space-y-3 border ui-border shadow-sm">
           <div class="flex justify-between items-start">
             <span class="text-xs font-bold ui-title">LearnDash Check Point SQLi</span>
             <span class="px-2 py-0.5 ui-subcard font-mono font-bold text-xs rounded border ui-border ui-title">CVSS 9.8</span>
@@ -713,7 +713,7 @@
           </div>
         </div>
 
-        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-slate-400 space-y-3 border ui-border shadow-sm">
+        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-neutral-400 space-y-3 border ui-border shadow-sm">
           <div class="flex justify-between items-start">
             <span class="text-xs font-bold ui-title">Tutor LMS Pro Auth Bypass</span>
             <span class="px-2 py-0.5 ui-subcard font-mono font-bold text-xs rounded border ui-border ui-title">CVSS 9.8</span>
@@ -739,7 +739,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-slate-400 border ui-border shadow-sm">
+        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-neutral-400 border ui-border shadow-sm">
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-xl ui-subcard border ui-border ui-title flex items-center justify-center font-bold">1</div>
             <h3 class="font-bold ui-title text-base">Tutor LMS: Custom AJAX & SQL Regressions</h3>
@@ -754,7 +754,7 @@
           </ul>
         </div>
 
-        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-slate-400 border ui-border shadow-sm">
+        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-neutral-400 border ui-border shadow-sm">
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-xl ui-subcard border ui-border ui-title flex items-center justify-center font-bold">2</div>
             <h3 class="font-bold ui-title text-base">LearnPress: Public REST & Unescaped Queries</h3>
@@ -769,7 +769,7 @@
           </ul>
         </div>
 
-        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-slate-400 border ui-border shadow-sm">
+        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-neutral-400 border ui-border shadow-sm">
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-xl ui-subcard border ui-border ui-title flex items-center justify-center font-bold">3</div>
             <h3 class="font-bold ui-title text-base">LearnDash: Native CPT Abstraction</h3>
@@ -1349,35 +1349,49 @@
     }
   }
 
+  if (!window.toggleTheme) {
+    window.toggleTheme = function() {
+      const isLight = document.documentElement.classList.contains('light-theme') || document.body.classList.contains('light-theme');
+      const newTheme = isLight ? 'dark' : 'light';
+      window.applyTheme(newTheme);
+    };
+  }
+
+  if (!window.applyTheme) {
+    window.applyTheme = function(theme) {
+      const docEl = document.documentElement;
+      const b = document.body;
+      const sidebarContainer = document.getElementById('theme-icon-container');
+      const topContainer = document.getElementById('top-theme-icon-container');
+      const sidebarLabel = document.getElementById('theme-label');
+
+      const sunSvg = `<svg class="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>`;
+      const moonSvg = `<svg class="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>`;
+
+      if (theme === 'light') {
+        docEl.classList.add('light-theme');
+        b.classList.add('light-theme');
+        if (sidebarContainer) sidebarContainer.innerHTML = sunSvg;
+        if (topContainer) topContainer.innerHTML = sunSvg;
+        if (sidebarLabel) sidebarLabel.textContent = 'Light';
+        localStorage.setItem('seclms_theme', 'light');
+      } else {
+        docEl.classList.remove('light-theme');
+        b.classList.remove('light-theme');
+        if (sidebarContainer) sidebarContainer.innerHTML = moonSvg;
+        if (topContainer) topContainer.innerHTML = moonSvg;
+        if (sidebarLabel) sidebarLabel.textContent = 'Dark';
+        localStorage.setItem('seclms_theme', 'dark');
+      }
+    };
+  }
+
   function toggleTheme() {
-    const b = document.body;
-    const isLight = b.classList.contains('light-theme');
-    const newTheme = isLight ? 'dark' : 'light';
-    applyTheme(newTheme);
+    window.toggleTheme();
   }
 
   function applyTheme(theme) {
-    const b = document.body;
-    const sidebarContainer = document.getElementById('theme-icon-container');
-    const topContainer = document.getElementById('top-theme-icon-container');
-    const sidebarLabel = document.getElementById('theme-label');
-
-    const sunSvg = `<svg class="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>`;
-    const moonSvg = `<svg class="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>`;
-
-    if (theme === 'light') {
-      b.classList.add('light-theme');
-      if (sidebarContainer) sidebarContainer.innerHTML = sunSvg;
-      if (topContainer) topContainer.innerHTML = sunSvg;
-      if (sidebarLabel) sidebarLabel.textContent = 'Light';
-      localStorage.setItem('seclms_theme', 'light');
-    } else {
-      b.classList.remove('light-theme');
-      if (sidebarContainer) sidebarContainer.innerHTML = moonSvg;
-      if (topContainer) topContainer.innerHTML = moonSvg;
-      if (sidebarLabel) sidebarLabel.textContent = 'Dark';
-      localStorage.setItem('seclms_theme', 'dark');
-    }
+    window.applyTheme(theme);
   }
 
   document.addEventListener('keydown', (e) => {

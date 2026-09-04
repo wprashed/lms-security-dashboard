@@ -110,41 +110,41 @@ const secureHtml = `<!DOCTYPE html>
   <meta name="description" content="Encrypted security vulnerability intelligence portal comparing Tutor LMS, LearnPress, and LearnDash with automated daily synchronizations.">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
-    :root {
-      --bg-main: #0b0f19;
-      --bg-sidebar: #0f172a;
-      --bg-card: #111827;
-      --bg-card-sub: #1e293b;
-      --bg-header: rgba(11, 15, 25, 0.90);
-      --bg-input: #0f172a;
-      --border-main: #1e293b;
+    :root, html, body {
+      --bg-main: #090d16;
+      --bg-sidebar: #0e1422;
+      --bg-card: #121927;
+      --bg-card-sub: #1a2333;
+      --bg-header: rgba(9, 13, 22, 0.90);
+      --bg-input: #0e1422;
+      --border-main: #1f293d;
       --border-subtle: #334155;
       --text-title: #f8fafc;
       --text-body: #cbd5e1;
       --text-muted: #94a3b8;
       --text-faint: #64748b;
       --table-row-hover: rgba(30, 41, 59, 0.5);
-      --sidebar-nav-active-bg: rgba(14, 165, 233, 0.15);
-      --sidebar-nav-active-border: #0ea5e9;
-      --sidebar-nav-active-text: #38bdf8;
+      --sidebar-nav-active-bg: rgba(255, 255, 255, 0.08);
+      --sidebar-nav-active-border: #f8fafc;
+      --sidebar-nav-active-text: #f8fafc;
     }
-    .light-theme {
+    :root.light-theme, html.light-theme, body.light-theme, .light-theme {
       --bg-main: #f8fafc;
       --bg-sidebar: #ffffff;
       --bg-card: #ffffff;
       --bg-card-sub: #f1f5f9;
       --bg-header: rgba(255, 255, 255, 0.92);
-      --bg-input: #f8fafc;
+      --bg-input: #ffffff;
       --border-main: #e2e8f0;
       --border-subtle: #cbd5e1;
-      --text-title: #0f172a;
+      --text-title: #090d16;
       --text-body: #334155;
       --text-muted: #64748b;
       --text-faint: #94a3b8;
       --table-row-hover: #f1f5f9;
-      --sidebar-nav-active-bg: rgba(14, 165, 233, 0.1);
-      --sidebar-nav-active-border: #0284c7;
-      --sidebar-nav-active-text: #0284c7;
+      --sidebar-nav-active-bg: rgba(15, 23, 42, 0.08);
+      --sidebar-nav-active-border: #090d16;
+      --sidebar-nav-active-text: #090d16;
     }
     body {
       background-color: var(--bg-main);
@@ -170,9 +170,6 @@ const secureHtml = `<!DOCTYPE html>
       border-left: 3px solid var(--sidebar-nav-active-border) !important;
       font-weight: 700 !important;
     }
-    .glow-tutor { box-shadow: 0 4px 20px -4px rgba(245, 158, 11, 0.12); }
-    .glow-lp { box-shadow: 0 4px 20px -4px rgba(244, 63, 94, 0.12); }
-    .glow-ld { box-shadow: 0 4px 20px -4px rgba(16, 185, 129, 0.12); }
 
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-main); }
@@ -190,16 +187,26 @@ const secureHtml = `<!DOCTYPE html>
 <body class="antialiased min-h-screen">
   <!-- Authentication Lock Screen -->
   <div id="auth-lock-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: var(--bg-main);">
-    <div class="absolute inset-0 bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none"></div>
+
+    <!-- Lock Screen Theme Toggle -->
+    <button onclick="toggleTheme()" class="absolute top-5 right-5 p-2.5 rounded-xl ui-card border ui-border ui-title text-xs hover:ui-hover-bg transition shadow-sm flex items-center gap-2" title="Toggle Light/Dark Theme">
+      <span id="lock-theme-icon-container">
+        <svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+      </span>
+      <span id="lock-theme-label" class="font-semibold text-xs ui-title hidden sm:inline">Theme</span>
+    </button>
 
     <div id="auth-card" class="relative max-w-md w-full ui-card rounded-3xl p-8 shadow-2xl space-y-6 border ui-border">
       <div class="text-center space-y-3">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 mx-auto shadow-md">
-          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <div class="w-14 h-14 rounded-2xl ui-subcard border ui-border flex items-center justify-center ui-title mx-auto shadow-sm">
+          <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
           </svg>
         </div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-sky-500/10 text-sky-500 border border-sky-500/20 whitespace-nowrap">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase ui-subcard ui-muted border ui-border whitespace-nowrap">
           <span>AES-256-GCM Encrypted</span>
         </div>
         <h1 class="text-xl font-black ui-title tracking-tight">SecLMS Intelligence Portal</h1>
@@ -213,7 +220,7 @@ const secureHtml = `<!DOCTYPE html>
           <label class="block text-xs font-semibold ui-body">Access Key / Password</label>
           <div class="relative">
             <input type="password" id="input-password" placeholder="Enter dashboard password..." required
-              class="w-full ui-input border ui-border focus:border-sky-500 rounded-xl px-4 py-3 text-sm ui-title placeholder:ui-faint focus:outline-none transition pr-10 shadow-sm">
+              class="w-full ui-input border ui-border focus:border-neutral-400 rounded-xl px-4 py-3 text-sm ui-title placeholder:ui-faint focus:outline-none transition pr-10 shadow-sm">
             <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3.5 ui-muted hover:ui-title focus:outline-none" aria-label="Toggle password visibility">
               <span id="eye-icon">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -227,20 +234,20 @@ const secureHtml = `<!DOCTYPE html>
 
         <div class="flex items-center justify-between text-xs">
           <label class="flex items-center gap-2 ui-muted cursor-pointer select-none">
-            <input type="checkbox" id="remember-session" checked class="rounded ui-input border ui-border text-sky-500 focus:ring-0">
+            <input type="checkbox" id="remember-session" checked class="rounded ui-input border ui-border accent-neutral-500 focus:ring-0">
             <span>Remember for this browser session</span>
           </label>
         </div>
 
-        <div id="auth-error-msg" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 text-xs font-medium flex items-center gap-2">
-          <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <div id="auth-error-msg" class="hidden p-3 rounded-xl ui-subcard border ui-border ui-title text-xs font-medium flex items-center gap-2">
+          <svg class="w-4 h-4 flex-shrink-0 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
           </svg>
           <span>Incorrect password. Access denied.</span>
         </div>
 
         <button type="submit" id="btn-unlock"
-          class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider transition shadow-lg shadow-sky-500/25 flex items-center justify-center gap-2">
+          class="w-full py-3 px-4 rounded-xl ui-card hover:ui-hover-bg ui-title border ui-border font-bold text-xs uppercase tracking-wider transition shadow-sm flex items-center justify-center gap-2">
           <span id="unlock-spinner" class="hidden">
             <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -257,6 +264,7 @@ const secureHtml = `<!DOCTYPE html>
       </form>
     </div>
   </div>
+
 
   <div id="dashboard-root" class="hidden min-h-screen"></div>
 
@@ -389,11 +397,45 @@ const secureHtml = `<!DOCTYPE html>
       document.getElementById('input-password').focus();
     }
 
-    // Initialize saved theme on lock screen
-    const savedTheme = localStorage.getItem('seclms_theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-theme');
-    }
+    const sunSvg = '<svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>';
+    const moonSvg = '<svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>';
+
+    window.toggleTheme = function() {
+      const isLight = document.documentElement.classList.contains('light-theme') || document.body.classList.contains('light-theme');
+      const newTheme = isLight ? 'dark' : 'light';
+      window.applyTheme(newTheme);
+    };
+
+    window.applyTheme = function(theme) {
+      const docEl = document.documentElement;
+      const b = document.body;
+
+      if (theme === 'light') {
+        docEl.classList.add('light-theme');
+        b.classList.add('light-theme');
+        localStorage.setItem('seclms_theme', 'light');
+      } else {
+        docEl.classList.remove('light-theme');
+        b.classList.remove('light-theme');
+        localStorage.setItem('seclms_theme', 'dark');
+      }
+
+      const lockIcon = document.getElementById('lock-theme-icon-container');
+      const lockLabel = document.getElementById('lock-theme-label');
+      if (lockIcon) lockIcon.innerHTML = theme === 'light' ? sunSvg : moonSvg;
+      if (lockLabel) lockLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+
+      const sidebarContainer = document.getElementById('theme-icon-container');
+      const topContainer = document.getElementById('top-theme-icon-container');
+      const sidebarLabel = document.getElementById('theme-label');
+      if (sidebarContainer) sidebarContainer.innerHTML = theme === 'light' ? sunSvg : moonSvg;
+      if (topContainer) topContainer.innerHTML = theme === 'light' ? sunSvg : moonSvg;
+      if (sidebarLabel) sidebarLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+    };
+
+    // Initialize saved theme immediately on load
+    const savedTheme = localStorage.getItem('seclms_theme') || 'dark';
+    window.applyTheme(savedTheme);
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedPass = sessionStorage.getItem('seclms_auth_pass');
