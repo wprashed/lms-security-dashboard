@@ -111,51 +111,39 @@ const secureHtml = `<!DOCTYPE html>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root, html, body {
-      --bg-main: #090d16;
-      --bg-sidebar: #0e1422;
-      --bg-card: #121927;
-      --bg-card-sub: #1a2333;
-      --bg-header: rgba(9, 13, 22, 0.90);
-      --bg-input: #0e1422;
-      --border-main: #1f293d;
-      --border-subtle: #334155;
-      --text-title: #f8fafc;
-      --text-body: #cbd5e1;
-      --text-muted: #94a3b8;
-      --text-faint: #64748b;
-      --table-row-hover: rgba(30, 41, 59, 0.5);
-      --sidebar-nav-active-bg: rgba(255, 255, 255, 0.08);
-      --sidebar-nav-active-border: #f8fafc;
-      --sidebar-nav-active-text: #f8fafc;
-    }
-    :root.light-theme, html.light-theme, body.light-theme, .light-theme {
-      --bg-main: #f8fafc;
-      --bg-sidebar: #ffffff;
-      --bg-card: #ffffff;
-      --bg-card-sub: #f1f5f9;
-      --bg-header: rgba(255, 255, 255, 0.92);
-      --bg-input: #ffffff;
-      --border-main: #e2e8f0;
-      --border-subtle: #cbd5e1;
-      --text-title: #090d16;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --text-faint: #94a3b8;
-      --table-row-hover: #f1f5f9;
-      --sidebar-nav-active-bg: rgba(15, 23, 42, 0.08);
-      --sidebar-nav-active-border: #090d16;
-      --sidebar-nav-active-text: #090d16;
+      --bg-main: #07090e;
+      --bg-sidebar: #0b0f17;
+      --bg-card: #131926;
+      --bg-card-sub: #1b2334;
+      --bg-header: rgba(11, 15, 23, 0.95);
+      --bg-input: #0b0f17;
+      --border-main: #243047;
+      --border-subtle: #34425d;
+      --text-title: #ffffff;
+      --text-body: #e1e7f0;
+      --text-muted: #9caec7;
+      --text-faint: #6b7f9d;
+      --table-row-hover: rgba(40, 53, 78, 0.5);
+      --sidebar-nav-active-bg: rgba(255, 255, 255, 0.09);
+      --sidebar-nav-active-border: #ffffff;
+      --sidebar-nav-active-text: #ffffff;
     }
     body {
       background-color: var(--bg-main);
       color: var(--text-body);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      transition: background-color 0.2s ease, color 0.2s ease;
     }
     .ui-sidebar { background-color: var(--bg-sidebar); }
     .ui-header { background-color: var(--bg-header); backdrop-filter: blur(12px); }
-    .ui-card { background-color: var(--bg-card); }
-    .ui-subcard { background-color: var(--bg-card-sub); }
+    .ui-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-main);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    }
+    .ui-subcard {
+      background-color: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+    }
     .ui-border { border-color: var(--border-main); }
     .ui-input { background-color: var(--bg-input); }
     .ui-title { color: var(--text-title); }
@@ -188,16 +176,6 @@ const secureHtml = `<!DOCTYPE html>
   <!-- Authentication Lock Screen -->
   <div id="auth-lock-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: var(--bg-main);">
     <div class="absolute inset-0 bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none"></div>
-
-    <!-- Lock Screen Theme Toggle -->
-    <button onclick="toggleTheme()" class="absolute top-5 right-5 p-2.5 rounded-xl ui-card border ui-border ui-title text-xs hover:ui-hover-bg transition shadow-sm flex items-center gap-2" title="Toggle Light/Dark Theme">
-      <span id="lock-theme-icon-container">
-        <svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-        </svg>
-      </span>
-      <span id="lock-theme-label" class="font-semibold text-xs ui-title hidden sm:inline">Theme</span>
-    </button>
 
     <div id="auth-card" class="relative max-w-md w-full ui-card rounded-3xl p-8 shadow-2xl space-y-6 border ui-border">
       <div class="text-center space-y-3">
@@ -397,45 +375,7 @@ const secureHtml = `<!DOCTYPE html>
       document.getElementById('input-password').focus();
     }
 
-    const sunSvg = '<svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>';
-    const moonSvg = '<svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>';
 
-    window.toggleTheme = function() {
-      const isLight = document.documentElement.classList.contains('light-theme') || document.body.classList.contains('light-theme');
-      const newTheme = isLight ? 'dark' : 'light';
-      window.applyTheme(newTheme);
-    };
-
-    window.applyTheme = function(theme) {
-      const docEl = document.documentElement;
-      const b = document.body;
-
-      if (theme === 'light') {
-        docEl.classList.add('light-theme');
-        b.classList.add('light-theme');
-        localStorage.setItem('seclms_theme', 'light');
-      } else {
-        docEl.classList.remove('light-theme');
-        b.classList.remove('light-theme');
-        localStorage.setItem('seclms_theme', 'dark');
-      }
-
-      const lockIcon = document.getElementById('lock-theme-icon-container');
-      const lockLabel = document.getElementById('lock-theme-label');
-      if (lockIcon) lockIcon.innerHTML = theme === 'light' ? sunSvg : moonSvg;
-      if (lockLabel) lockLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
-
-      const sidebarContainer = document.getElementById('theme-icon-container');
-      const topContainer = document.getElementById('top-theme-icon-container');
-      const sidebarLabel = document.getElementById('theme-label');
-      if (sidebarContainer) sidebarContainer.innerHTML = theme === 'light' ? sunSvg : moonSvg;
-      if (topContainer) topContainer.innerHTML = theme === 'light' ? sunSvg : moonSvg;
-      if (sidebarLabel) sidebarLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
-    };
-
-    // Initialize saved theme immediately on load
-    const savedTheme = localStorage.getItem('seclms_theme') || 'dark';
-    window.applyTheme(savedTheme);
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedPass = sessionStorage.getItem('seclms_auth_pass');
