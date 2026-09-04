@@ -1,353 +1,382 @@
 <!-- Mobile Overlay Backdrop -->
-<div id="sidebar-backdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-slate-950/75 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+<div id="sidebar-backdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
 
-<!-- Left Vertical Sidebar Menu -->
-<aside id="app-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 flex flex-col bg-slate-900/95 backdrop-blur-xl border-r border-slate-800 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 shadow-2xl flex-shrink-0">
+<!-- Left Vertical Sidebar Navigation -->
+<aside id="app-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 flex flex-col ui-sidebar border-r ui-border transform -translate-x-full lg:translate-x-0 transition-all duration-300 shadow-xl flex-shrink-0">
   <!-- Sidebar Header / Branding -->
-  <div class="p-5 border-b border-slate-800/80">
+  <div class="p-5 border-b ui-border">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-sky-500/20 flex-shrink-0">
-          <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center text-lg">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-cyan-400 p-0.5 shadow-md flex-shrink-0">
+          <div class="w-full h-full ui-card rounded-[10px] flex items-center justify-center text-lg">
             🛡️
           </div>
         </div>
         <div class="overflow-hidden">
           <div class="flex items-center gap-1.5">
-            <span class="font-extrabold text-base tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent whitespace-nowrap">SecLMS</span>
-            <span class="text-[10px] font-bold font-mono px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30 whitespace-nowrap">BENCHMARK</span>
+            <span class="font-extrabold text-base tracking-tight ui-title whitespace-nowrap">SecLMS</span>
+            <span class="text-[10px] font-bold font-mono px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-500 border border-sky-500/30 whitespace-nowrap">BENCHMARK</span>
           </div>
-          <p class="text-[11px] text-slate-400 truncate">WordPress Threat Intelligence</p>
+          <p class="text-[11px] ui-muted truncate">WordPress Threat Intelligence</p>
         </div>
       </div>
-      <button onclick="toggleMobileSidebar()" class="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 text-sm">
+      <button onclick="toggleMobileSidebar()" class="lg:hidden p-1.5 rounded-lg ui-muted hover:ui-title text-sm">
         ✕
       </button>
     </div>
 
-    <!-- Live Sync Status Pill (Fixed: whitespace-nowrap + flex prevents line-wrapping badge bug) -->
-    <div class="mt-4 flex items-center justify-between p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/90">
+    <!-- Live Sync Status Card -->
+    <div class="mt-4 flex items-center justify-between p-2.5 rounded-xl ui-subcard border ui-border">
       <div class="flex items-center gap-2 whitespace-nowrap">
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span class="text-[11px] font-medium text-emerald-400">Daily Sync Active</span>
+        <span class="text-[11px] font-semibold text-emerald-500">Daily Sync Active</span>
       </div>
-      <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 whitespace-nowrap">__TOTAL_RECORDS__ CVEs</span>
+      <span class="text-[10px] font-mono ui-muted ui-card px-2 py-0.5 rounded border ui-border whitespace-nowrap">__TOTAL_RECORDS__ CVEs</span>
     </div>
   </div>
 
-  <!-- Vertical Navigation Menu -->
-  <nav class="flex-1 px-3 py-4 space-y-1.5 overflow-y-auto custom-scrollbar text-xs font-medium">
-    <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-500">Navigation</div>
+  <!-- Vertical Navigation Menu Links -->
+  <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar text-xs font-medium">
+    <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider ui-faint">Navigation</div>
 
-    <a href="#overview" onclick="handleNavClick('overview')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="overview">
+    <a href="#overview" onclick="handleNavClick('overview')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="overview">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">📊</span>
         <span>Overview</span>
       </div>
-      <span class="text-[10px] font-mono text-slate-500 group-hover:text-slate-400">Summary</span>
+      <span class="text-[10px] font-mono ui-faint">KPIs</span>
     </a>
 
-    <a href="#benchmarks" onclick="handleNavClick('benchmarks')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="benchmarks">
+    <a href="#benchmarks" onclick="handleNavClick('benchmarks')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="benchmarks">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">🏆</span>
         <span>Scorecards</span>
       </div>
-      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">3 LMS</span>
+      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold">3 LMS</span>
     </a>
 
-    <a href="#analytics" onclick="handleNavClick('analytics')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="analytics">
+    <a href="#analytics" onclick="handleNavClick('analytics')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="analytics">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">📈</span>
         <span>Visualizations</span>
       </div>
-      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">Timeline</span>
+      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-500 border border-sky-500/20 font-bold">Timeline</span>
     </a>
 
-    <a href="#explorer" onclick="handleNavClick('explorer')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="explorer">
+    <a href="#explorer" onclick="handleNavClick('explorer')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="explorer">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">🔍</span>
         <span>Database Explorer</span>
       </div>
-      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">__TOTAL_RECORDS__</span>
+      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-500 border border-purple-500/20 font-bold">__TOTAL_RECORDS__</span>
     </a>
 
-    <a href="#top-exploits" onclick="handleNavClick('top-exploits')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="top-exploits">
+    <a href="#top-exploits" onclick="handleNavClick('top-exploits')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="top-exploits">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">⚡</span>
         <span>Top Exploits</span>
       </div>
-      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Critical</span>
+      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-500 border border-rose-500/20 font-bold">Critical</span>
     </a>
 
-    <a href="#architecture" onclick="handleNavClick('architecture')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="architecture">
+    <a href="#architecture" onclick="handleNavClick('architecture')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="architecture">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">🏛️</span>
         <span>Root Causes</span>
       </div>
-      <span class="text-[10px] font-mono text-slate-500">Analysis</span>
+      <span class="text-[10px] font-mono ui-faint">Architecture</span>
     </a>
 
-    <a href="#simulator" onclick="handleNavClick('simulator')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/70 transition group" data-section="simulator">
+    <a href="#simulator" onclick="handleNavClick('simulator')" class="sidebar-nav-link flex items-center justify-between px-3 py-2.5 rounded-xl ui-muted hover:ui-title ui-hover-bg transition group" data-section="simulator">
       <div class="flex items-center gap-2.5">
         <span class="text-base group-hover:scale-110 transition-transform">🎛️</span>
         <span>Risk Simulator</span>
       </div>
-      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Modeler</span>
+      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 font-bold">Interactive</span>
     </a>
 
-    <!-- Quick Platform Filters -->
-    <div class="pt-4 px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Quick Filters</div>
+    <!-- Quick Platform Filters in Sidebar -->
+    <div class="pt-4 px-3 text-[10px] font-bold uppercase tracking-wider ui-faint">Quick Platform Filters</div>
     <div class="grid grid-cols-2 gap-1.5 pt-1 px-1">
-      <button onclick="quickFilterSidebar('ALL')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition text-left flex items-center justify-between">
+      <button onclick="quickFilterSidebar('ALL')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold ui-subcard hover:ui-card ui-body border ui-border transition text-left flex items-center justify-between">
         <span>All</span>
-        <span class="text-[10px] font-mono text-slate-400">__TOTAL_RECORDS__</span>
+        <span class="text-[10px] font-mono ui-faint">__TOTAL_RECORDS__</span>
       </button>
-      <button onclick="quickFilterSidebar('LearnDash')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 transition text-left flex items-center justify-between">
+      <button onclick="quickFilterSidebar('LearnDash')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 transition text-left flex items-center justify-between">
         <span>LearnDash</span>
-        <span class="text-[10px] font-mono">__LD_LEN__</span>
+        <span class="text-[10px] font-mono font-bold">__LD_LEN__</span>
       </button>
-      <button onclick="quickFilterSidebar('Tutor LMS')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 transition text-left flex items-center justify-between">
+      <button onclick="quickFilterSidebar('Tutor LMS')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 transition text-left flex items-center justify-between">
         <span>Tutor LMS</span>
-        <span class="text-[10px] font-mono">__TUTOR_LEN__</span>
+        <span class="text-[10px] font-mono font-bold">__TUTOR_LEN__</span>
       </button>
-      <button onclick="quickFilterSidebar('LearnPress')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition text-left flex items-center justify-between">
+      <button onclick="quickFilterSidebar('LearnPress')" class="px-2.5 py-2 rounded-lg text-[11px] font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/30 transition text-left flex items-center justify-between">
         <span>LearnPress</span>
-        <span class="text-[10px] font-mono">__LP_LEN__</span>
+        <span class="text-[10px] font-mono font-bold">__LP_LEN__</span>
       </button>
     </div>
   </nav>
 
-  <!-- Sidebar Footer Actions -->
-  <div class="p-4 border-t border-slate-800/80 bg-slate-950/40 space-y-2">
+  <!-- Sidebar Footer -->
+  <div class="p-4 border-t ui-border ui-subcard space-y-2">
     <div class="grid grid-cols-2 gap-2">
-      <button onclick="exportData('csv')" class="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+      <button onclick="exportData('csv')" class="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold ui-card hover:ui-hover-bg ui-title border ui-border transition shadow-sm">
         <span>📥</span>
-        <span>CSV</span>
+        <span>CSV Export</span>
       </button>
-      <button onclick="toggleTheme()" id="btn-theme-sidebar" class="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition" title="Toggle Theme">
+      <button onclick="toggleTheme()" id="btn-theme-sidebar" class="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold ui-card hover:ui-hover-bg ui-title border ui-border transition shadow-sm" title="Toggle Light/Dark Theme">
         <span id="theme-icon">🌙</span>
         <span id="theme-label">Theme</span>
       </button>
     </div>
 
-    <button id="btn-lock-session" onclick="lockSession()" class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 border border-rose-500/30 transition shadow-sm">
+    <button id="btn-lock-session" onclick="lockSession()" class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs font-bold bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/30 transition shadow-sm">
       <span>🔒</span>
       <span>Lock Session</span>
     </button>
 
     <div class="text-center pt-1">
-      <span class="text-[10px] font-mono text-slate-500 tracking-wider">AES-256-GCM · PBKDF2 PROTECTED</span>
+      <span class="text-[10px] font-mono ui-faint tracking-wider">AES-256-GCM · PBKDF2 PROTECTED</span>
     </div>
   </div>
 </aside>
 
-<!-- Main Content Area (With left margin for sidebar on lg screens) -->
+<!-- Main Application Content Area -->
 <div class="lg:pl-72 flex flex-col min-h-screen">
-  <!-- Top Header Bar -->
-  <header class="sticky top-0 z-30 glass-nav border-b border-slate-800/80 transition-colors">
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-30 ui-header border-b ui-border transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <button onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white border border-slate-700 text-sm">
+        <button onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-xl ui-card ui-title border ui-border text-sm">
           ☰
         </button>
         <div class="flex items-center gap-2 text-xs">
-          <span class="text-slate-400 hidden sm:inline">SecLMS Portal /</span>
-          <span class="font-bold text-white tracking-wide">WordPress LMS Security Intelligence</span>
+          <span class="ui-faint hidden sm:inline">SecLMS Portal /</span>
+          <span class="font-bold ui-title tracking-wide">WordPress LMS Security Intelligence</span>
         </div>
       </div>
 
       <div class="flex items-center gap-3">
-        <div class="hidden md:flex items-center gap-2 text-xs font-medium text-slate-400">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800/80 border border-slate-700/80 text-[11px] text-slate-300">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>NVD 2.0 Live Feed</span>
+        <div class="hidden md:flex items-center gap-2 text-xs font-medium">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ui-card border ui-border text-[11px] ui-muted">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>NVD 2.0 Real-time Feed</span>
           </span>
         </div>
-        <a href="#explorer" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-500/15 hover:bg-sky-500/25 text-sky-400 border border-sky-500/30 transition flex items-center gap-1.5">
+        <button onclick="toggleTheme()" class="p-2 rounded-xl ui-card border ui-border ui-title text-xs hover:ui-hover-bg transition" title="Toggle Light/Dark Theme">
+          <span id="top-theme-icon">🌙</span>
+        </button>
+        <a href="#explorer" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-white transition flex items-center gap-1.5 shadow-sm">
           <span>⚡</span>
-          <span class="hidden sm:inline">Vulnerability</span> Explorer
+          <span>Explorer</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Content Sections Container -->
+  <!-- Main Body Content -->
   <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-16">
-    <!-- HERO SECTION -->
-    <section id="overview" class="text-center max-w-4xl mx-auto space-y-5 pt-2">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20 shadow-sm">
-        <span>Automated Daily Security Benchmark</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-mono">__TOTAL_RECORDS__ Normalized Records</span>
+    <!-- HERO SECTION & SUMMARY KPI STRIP -->
+    <section id="overview" class="space-y-6 pt-2">
+      <div class="text-center max-w-4xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-500 border border-sky-500/20 shadow-sm">
+          <span>Automated Daily Security Intelligence</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="font-mono font-bold">__TOTAL_RECORDS__ Normalized CVEs</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight ui-title leading-tight">
+          WordPress LMS Security Benchmark
+        </h1>
+
+        <p class="text-sm sm:text-base ui-muted leading-relaxed max-w-3xl mx-auto">
+          An empirical, data-driven security comparison evaluating <strong class="text-emerald-500 font-bold">LearnDash</strong>, <strong class="text-amber-500 font-bold">Tutor LMS</strong>, and <strong class="text-rose-500 font-bold">LearnPress</strong>. Normalized across NIST NVD 2.0, Wordfence Intelligence, Patchstack, WPScan, and official WordPress Trac changesets.
+        </p>
+
+        <div class="pt-1 flex flex-wrap justify-center gap-3">
+          <a href="#explorer" class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs transition shadow-lg shadow-sky-500/20 flex items-center gap-2">
+            <span>🔍</span> Explore 197 Vulnerabilities
+          </a>
+          <a href="#benchmarks" class="px-5 py-2.5 rounded-xl ui-card hover:ui-subcard ui-title font-bold text-xs border ui-border transition flex items-center gap-2">
+            <span>🏆</span> Executive Scorecards
+          </a>
+          <a href="#simulator" class="px-5 py-2.5 rounded-xl ui-card hover:ui-subcard ui-title font-bold text-xs border ui-border transition flex items-center gap-2">
+            <span>🎛️</span> Threat Risk Modeler
+          </a>
+        </div>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-        WordPress LMS Security Benchmark
-      </h1>
-
-      <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-3xl mx-auto">
-        An empirical, cross-database security analysis comparing <strong class="text-amber-400">Tutor LMS</strong>, <strong class="text-rose-400">LearnPress</strong>, and <strong class="text-emerald-400">LearnDash</strong>. Normalized across NIST NVD, Wordfence Intelligence, Patchstack, WPScan, and official WordPress Trac changesets.
-      </p>
-
-      <div class="pt-2 flex flex-wrap justify-center gap-3">
-        <a href="#explorer" class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-semibold text-xs transition shadow-lg shadow-sky-500/20 flex items-center gap-2">
-          <span>🔍</span> Open Filterable Database
-        </a>
-        <a href="#benchmarks" class="px-5 py-2.5 rounded-xl surface-card hover:bg-slate-800 text-slate-200 font-semibold text-xs transition flex items-center gap-2">
-          <span>🏆</span> Compare LMS Scorecards
-        </a>
-        <a href="#simulator" class="px-5 py-2.5 rounded-xl surface-card hover:bg-slate-800 text-slate-200 font-semibold text-xs transition flex items-center gap-2">
-          <span>🎛️</span> Run Risk Simulator
-        </a>
+      <!-- Executive KPI Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+        <div class="ui-card p-4 rounded-2xl border ui-border shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider ui-faint block">Total Core CVEs</span>
+          <div class="text-3xl font-black ui-title mt-1">__TOTAL_RECORDS__</div>
+          <span class="text-[11px] ui-muted mt-1 block">Cross-verified in NVD 2.0</span>
+        </div>
+        <div class="ui-card p-4 rounded-2xl border ui-border border-t-4 border-t-emerald-500 shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-500 block">Lowest Risk Platform</span>
+          <div class="text-3xl font-black ui-title mt-1">LearnDash</div>
+          <span class="text-[11px] text-emerald-500 mt-1 block">__LD_LEN__ CVEs · 2–4 Day Patch SLA</span>
+        </div>
+        <div class="ui-card p-4 rounded-2xl border ui-border border-t-4 border-t-amber-500 shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-500 block">High Volume Exposure</span>
+          <div class="text-3xl font-black ui-title mt-1">Tutor LMS</div>
+          <span class="text-[11px] text-amber-500 mt-1 block">__TUTOR_LEN__ CVEs · AJAX Surface Sprawl</span>
+        </div>
+        <div class="ui-card p-4 rounded-2xl border ui-border border-t-4 border-t-rose-500 shadow-sm">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-rose-500 block">Highest Threat Profile</span>
+          <div class="text-3xl font-black ui-title mt-1">LearnPress</div>
+          <span class="text-[11px] text-rose-500 mt-1 block">__LP_DENS__ Vulns/100k · Unauth SQLi</span>
+        </div>
       </div>
     </section>
 
-    <!-- 1. EXECUTIVE BENCHMARK SCORECARDS (100% IDENTICAL METRIC TYPES) -->
+    <!-- 1. EXECUTIVE BENCHMARK SCORECARDS -->
     <section id="benchmarks" class="space-y-6">
       <div class="flex justify-between items-end">
         <div>
-          <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">Section 01</div>
-          <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white">Executive Security Scorecards</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Core plugin vulnerabilities normalized for active installation base and real-world severity</p>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-1">Section 01</div>
+          <h2 class="text-xl sm:text-2xl font-black tracking-tight ui-title">Executive Security Scorecards</h2>
+          <p class="text-xs ui-muted mt-0.5">Uniform comparison of core plugin vulnerabilities normalized for active installations and real-world severity</p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- LearnDash Scorecard (Rank #1) -->
-        <div class="surface-card rounded-2xl p-6 glow-ld relative overflow-hidden border-t-4 border-t-emerald-500 flex flex-col justify-between">
+        <!-- LearnDash Scorecard (Rank #1 Winner) -->
+        <div class="ui-card rounded-2xl p-6 glow-ld border-t-4 border-t-emerald-500 flex flex-col justify-between border ui-border shadow-sm">
           <div>
             <div class="flex justify-between items-start">
               <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">StellarWP / Liquid Web</span>
-                <h3 class="text-2xl font-black text-white mt-0.5">LearnDash</h3>
-                <span class="text-xs text-slate-400">~75,000 Active Installations</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-500">StellarWP / Liquid Web</span>
+                <h3 class="text-2xl font-black ui-title mt-0.5">LearnDash</h3>
+                <span class="text-xs ui-muted">~75,000 Active Installations</span>
               </div>
-              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
                 🥇 Rank #1 (Lowest Risk)
               </span>
             </div>
 
             <!-- Standardized 4 Metrics Grid -->
-            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-slate-800">
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-white">__LD_LEN__ <span class="text-xs text-slate-500 font-normal">(17 raw)</span></div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Unique Core CVEs</div>
+            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t ui-border">
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black ui-title">__LD_LEN__ <span class="text-xs ui-faint font-normal">(17 raw)</span></div>
+                <div class="text-[11px] ui-muted mt-0.5">Unique Core CVEs</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-emerald-400">__LD_DENS__</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Vulns / 100k Sites</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-emerald-500">__LD_DENS__</div>
+                <div class="text-[11px] ui-muted mt-0.5">Vulns / 100k Sites</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-emerald-400">2-4 Days</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Median Patch Delay</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-emerald-500">2-4 Days</div>
+                <div class="text-[11px] ui-muted mt-0.5">Median Patch Delay</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-emerald-400">__LD_WIS__</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Weighted Impact (WIS)</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-emerald-500">__LD_WIS__</div>
+                <div class="text-[11px] ui-muted mt-0.5">Weighted Impact (WIS)</div>
               </div>
             </div>
 
-            <p class="text-xs text-slate-300 mt-4 leading-relaxed">
-              <strong>Enterprise Baseline:</strong> Operates on standard WordPress Custom Post Types (<code class="text-emerald-300 font-mono">WP_Query</code>). Recorded less than one-fifth the vulnerabilities of Tutor LMS over 14 years. Rapid 48-72h patch response.
+            <p class="text-xs ui-body mt-4 leading-relaxed">
+              <strong>Enterprise Baseline:</strong> Operates on standard WordPress Custom Post Types (<code class="text-emerald-500 font-mono font-bold">WP_Query</code>). Recorded less than one-fifth the vulnerabilities of Tutor LMS over 14 years. Rapid 48-72h patch response.
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs">
-            <span class="text-slate-400">Severity: __LD_CRIT__ Crit | __LD_HIGH__ High | __LD_MED__ Med</span>
-            <span class="text-emerald-400 font-bold">Safest LMS Platform</span>
+          <div class="mt-6 pt-4 border-t ui-border flex justify-between items-center text-xs">
+            <span class="ui-muted">Severity: __LD_CRIT__ Crit | __LD_HIGH__ High | __LD_MED__ Med</span>
+            <span class="text-emerald-500 font-bold">Safest LMS Platform</span>
           </div>
         </div>
 
         <!-- Tutor LMS Scorecard (Rank #2) -->
-        <div class="surface-card rounded-2xl p-6 glow-tutor relative overflow-hidden border-t-4 border-t-amber-500 flex flex-col justify-between">
+        <div class="ui-card rounded-2xl p-6 glow-tutor border-t-4 border-t-amber-500 flex flex-col justify-between border ui-border shadow-sm">
           <div>
             <div class="flex justify-between items-start">
               <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-amber-400">Themeum</span>
-                <h3 class="text-2xl font-black text-white mt-0.5">Tutor LMS</h3>
-                <span class="text-xs text-slate-400">100,000+ Active Installations</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-amber-500">Themeum</span>
+                <h3 class="text-2xl font-black ui-title mt-0.5">Tutor LMS</h3>
+                <span class="text-xs ui-muted">100,000+ Active Installations</span>
               </div>
-              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/10 text-amber-500 border border-amber-500/30">
                 🥈 Rank #2 (High Volume)
               </span>
             </div>
 
             <!-- Standardized 4 Metrics Grid -->
-            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-slate-800">
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-white">__TUTOR_LEN__ <span class="text-xs text-slate-500 font-normal">(102 raw)</span></div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Unique Core CVEs</div>
+            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t ui-border">
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black ui-title">__TUTOR_LEN__ <span class="text-xs ui-faint font-normal">(102 raw)</span></div>
+                <div class="text-[11px] ui-muted mt-0.5">Unique Core CVEs</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-amber-400">__TUTOR_DENS__</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Vulns / 100k Sites</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-amber-500">__TUTOR_DENS__</div>
+                <div class="text-[11px] ui-muted mt-0.5">Vulns / 100k Sites</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-amber-400">5-12 Days</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Median Patch Delay</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-amber-500">5-12 Days</div>
+                <div class="text-[11px] ui-muted mt-0.5">Median Patch Delay</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-amber-400">__TUTOR_WIS__</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Weighted Impact (WIS)</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-amber-500">__TUTOR_WIS__</div>
+                <div class="text-[11px] ui-muted mt-0.5">Weighted Impact (WIS)</div>
               </div>
             </div>
 
-            <p class="text-xs text-slate-300 mt-4 leading-relaxed">
-              <strong>High Surface Sprawl:</strong> Features dozens of custom AJAX hooks and dynamic SQL queries. Experienced continuous regressions in query sanitization and authorization checks between 2024 and 2026.
+            <p class="text-xs ui-body mt-4 leading-relaxed">
+              <strong>High Surface Sprawl:</strong> Features dozens of custom AJAX hooks and dynamic SQL queries. Experienced recurring regressions in query sanitization and authorization checks between 2024 and 2026.
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs">
-            <span class="text-slate-400">Severity: __TUTOR_CRIT__ Crit | __TUTOR_HIGH__ High | __TUTOR_MED__ Med</span>
-            <span class="text-amber-400 font-bold">High Volume Exposure</span>
+          <div class="mt-6 pt-4 border-t ui-border flex justify-between items-center text-xs">
+            <span class="ui-muted">Severity: __TUTOR_CRIT__ Crit | __TUTOR_HIGH__ High | __TUTOR_MED__ Med</span>
+            <span class="text-amber-500 font-bold">High Volume Exposure</span>
           </div>
         </div>
 
         <!-- LearnPress Scorecard (Rank #3) -->
-        <div class="surface-card rounded-2xl p-6 glow-lp relative overflow-hidden border-t-4 border-t-rose-500 flex flex-col justify-between">
+        <div class="ui-card rounded-2xl p-6 glow-lp border-t-4 border-t-rose-500 flex flex-col justify-between border ui-border shadow-sm">
           <div>
             <div class="flex justify-between items-start">
               <div>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-rose-400">ThimPress</span>
-                <h3 class="text-2xl font-black text-white mt-0.5">LearnPress</h3>
-                <span class="text-xs text-slate-400">70,000+ Active Installations</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-rose-500">ThimPress</span>
+                <h3 class="text-2xl font-black ui-title mt-0.5">LearnPress</h3>
+                <span class="text-xs ui-muted">70,000+ Active Installations</span>
               </div>
-              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-500 border border-rose-500/30">
                 🥉 Rank #3 (Highest Threat)
               </span>
             </div>
 
             <!-- Standardized 4 Metrics Grid -->
-            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-slate-800">
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-white">__LP_LEN__ <span class="text-xs text-slate-500 font-normal">(84 raw)</span></div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Unique Core CVEs</div>
+            <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t ui-border">
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black ui-title">__LP_LEN__ <span class="text-xs ui-faint font-normal">(84 raw)</span></div>
+                <div class="text-[11px] ui-muted mt-0.5">Unique Core CVEs</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-rose-400">__LP_DENS__</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Vulns / 100k Sites</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-rose-500">__LP_DENS__</div>
+                <div class="text-[11px] ui-muted mt-0.5">Vulns / 100k Sites</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-rose-400">14-30+ Days</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Median Patch Delay</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-rose-500">14-30+ Days</div>
+                <div class="text-[11px] ui-muted mt-0.5">Median Patch Delay</div>
               </div>
-              <div class="sub-card p-3 rounded-xl">
-                <div class="text-2xl font-black text-rose-400">__LP_WIS__</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Weighted Impact (WIS)</div>
+              <div class="ui-subcard p-3 rounded-xl border ui-border">
+                <div class="text-2xl font-black text-rose-500">__LP_WIS__</div>
+                <div class="text-[11px] ui-muted mt-0.5">Weighted Impact (WIS)</div>
               </div>
             </div>
 
-            <p class="text-xs text-slate-300 mt-4 leading-relaxed">
+            <p class="text-xs ui-body mt-4 leading-relaxed">
               <strong>Chronic Architectural Flaws:</strong> Heavy concentration of unauthenticated SQL injections (e.g. CVSS 10.0 CVE-2024-8522), path traversal, and serialized object injection. Highest vulnerability density per 100k sites.
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center text-xs">
-            <span class="text-slate-400">Severity: __LP_CRIT__ Crit | __LP_HIGH__ High | __LP_MED__ Med</span>
-            <span class="text-rose-400 font-bold">Critical Threat Profile</span>
+          <div class="mt-6 pt-4 border-t ui-border flex justify-between items-center text-xs">
+            <span class="ui-muted">Severity: __LP_CRIT__ Crit | __LP_HIGH__ High | __LP_MED__ Med</span>
+            <span class="text-rose-500 font-bold">Critical Threat Profile</span>
           </div>
         </div>
       </div>
@@ -356,47 +385,47 @@
     <!-- 2. ANALYTICS & TIMELINE VISUALIZATIONS -->
     <section id="analytics" class="space-y-6">
       <div>
-        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">Section 02</div>
-        <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white">Interactive Analytics & Visualizations</h2>
-        <p class="text-xs text-slate-400 mt-0.5">Click any year below to filter the entire database table</p>
+        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-1">Section 02</div>
+        <h2 class="text-xl sm:text-2xl font-black tracking-tight ui-title">Interactive Analytics & Visualizations</h2>
+        <p class="text-xs ui-muted mt-0.5">Click any year below or in the legend to automatically filter the vulnerability database</p>
       </div>
 
-      <div class="surface-card rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="ui-card rounded-2xl p-6 shadow-sm border ui-border space-y-4">
         <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <div>
-            <h3 class="font-bold text-base text-white">Vulnerability Discovery Velocity (2018–2026)</h3>
-            <p class="text-xs text-slate-400">Surge in 2024 & 2026 driven by Wordfence & Patchstack bug bounty disclosures</p>
+            <h3 class="font-bold text-base ui-title">Vulnerability Discovery Velocity (2018–2026)</h3>
+            <p class="text-xs ui-muted">Surge in 2024 & 2026 driven by Wordfence & Patchstack bug bounty disclosures</p>
           </div>
           <div class="flex items-center gap-4 text-xs font-semibold">
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-400"></span> Tutor LMS</span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-400"></span> LearnPress</span>
-            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-400"></span> LearnDash</span>
+            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('Tutor LMS')"><span class="w-3 h-3 rounded-full bg-amber-500"></span> <span class="ui-title">Tutor LMS</span></span>
+            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('LearnPress')"><span class="w-3 h-3 rounded-full bg-rose-500"></span> <span class="ui-title">LearnPress</span></span>
+            <span class="flex items-center gap-1.5 cursor-pointer" onclick="quickFilterSidebar('LearnDash')"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> <span class="ui-title">LearnDash</span></span>
           </div>
         </div>
 
         <div class="w-full h-64 overflow-x-auto">
           <svg viewBox="0 0 800 240" class="w-full h-full">
-            <line x1="60" y1="20" x2="780" y2="20" stroke="#374151" stroke-dasharray="3,3" />
-            <line x1="60" y1="65" x2="780" y2="65" stroke="#374151" stroke-dasharray="3,3" />
-            <line x1="60" y1="110" x2="780" y2="110" stroke="#374151" stroke-dasharray="3,3" />
-            <line x1="60" y1="155" x2="780" y2="155" stroke="#374151" stroke-dasharray="3,3" />
-            <line x1="60" y1="200" x2="780" y2="200" stroke="#4b5563" stroke-width="1.5" />
+            <line x1="60" y1="20" x2="780" y2="20" stroke="currentColor" class="ui-faint opacity-20" stroke-dasharray="3,3" />
+            <line x1="60" y1="65" x2="780" y2="65" stroke="currentColor" class="ui-faint opacity-20" stroke-dasharray="3,3" />
+            <line x1="60" y1="110" x2="780" y2="110" stroke="currentColor" class="ui-faint opacity-20" stroke-dasharray="3,3" />
+            <line x1="60" y1="155" x2="780" y2="155" stroke="currentColor" class="ui-faint opacity-20" stroke-dasharray="3,3" />
+            <line x1="60" y1="200" x2="780" y2="200" stroke="currentColor" class="ui-border" stroke-width="1.5" />
 
-            <text x="45" y="24" fill="#9ca3af" font-size="10" text-anchor="end">40</text>
-            <text x="45" y="69" fill="#9ca3af" font-size="10" text-anchor="end">30</text>
-            <text x="45" y="114" fill="#9ca3af" font-size="10" text-anchor="end">20</text>
-            <text x="45" y="159" fill="#9ca3af" font-size="10" text-anchor="end">10</text>
-            <text x="45" y="204" fill="#9ca3af" font-size="10" text-anchor="end">0</text>
+            <text x="45" y="24" fill="currentColor" class="ui-muted" font-size="10" text-anchor="end">40</text>
+            <text x="45" y="69" fill="currentColor" class="ui-muted" font-size="10" text-anchor="end">30</text>
+            <text x="45" y="114" fill="currentColor" class="ui-muted" font-size="10" text-anchor="end">20</text>
+            <text x="45" y="159" fill="currentColor" class="ui-muted" font-size="10" text-anchor="end">10</text>
+            <text x="45" y="204" fill="currentColor" class="ui-muted" font-size="10" text-anchor="end">0</text>
 
-            <text x="110" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2018')">2018</text>
-            <text x="190" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2019')">2019</text>
-            <text x="270" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2020')">2020</text>
-            <text x="350" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2021')">2021</text>
-            <text x="430" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2022')">2022</text>
-            <text x="510" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2023')">2023</text>
-            <text x="590" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2024')">2024</text>
-            <text x="670" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2025')">2025</text>
-            <text x="750" y="222" fill="#9ca3af" font-size="11" text-anchor="middle" class="cursor-pointer hover:fill-sky-400 font-bold" onclick="setDatePreset('2026')">2026</text>
+            <text x="110" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2018')">2018</text>
+            <text x="190" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2019')">2019</text>
+            <text x="270" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2020')">2020</text>
+            <text x="350" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2021')">2021</text>
+            <text x="430" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2022')">2022</text>
+            <text x="510" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2023')">2023</text>
+            <text x="590" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2024')">2024</text>
+            <text x="670" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2025')">2025</text>
+            <text x="750" y="222" fill="currentColor" class="ui-muted cursor-pointer hover:text-sky-500 font-bold" font-size="11" text-anchor="middle" onclick="setDatePreset('2026')">2026</text>
 
             <polyline fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
               points="110,200 190,200 270,195 350,155 430,191 510,168 590,51 670,164 750,20" />
@@ -421,50 +450,50 @@
     <section id="explorer" class="space-y-6">
       <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-3">
         <div>
-          <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">Section 03</div>
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20 mb-1.5">
-            <span>Automated Daily Data Sync</span>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-1">Section 03</div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-500 border border-sky-500/20 mb-1.5">
+            <span>Automated Daily Sync</span>
             <span>•</span>
             <span id="stat-active-pill">__TOTAL_RECORDS__ Records</span>
           </div>
-          <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white">Vulnerability Database & Multi-Filter Explorer</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Filter by date ranges, vulnerability categories, CVSS thresholds, and authorization barriers</p>
+          <h2 class="text-xl sm:text-2xl font-black tracking-tight ui-title">Vulnerability Database & Multi-Filter Explorer</h2>
+          <p class="text-xs ui-muted mt-0.5">Filter by date ranges, vulnerability categories, CVSS thresholds, and authorization barriers</p>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="resetAllFilters()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 transition flex items-center gap-1">
+          <button onclick="resetAllFilters()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/30 transition flex items-center gap-1">
             <span>↺</span> Reset Filters
           </button>
-          <button onclick="exportData('json')" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+          <button onclick="exportData('json')" class="px-3 py-1.5 rounded-xl text-xs font-semibold ui-subcard hover:ui-hover-bg ui-title border ui-border transition">
             Export JSON
           </button>
-          <button onclick="exportData('csv')" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-white transition">
+          <button onclick="exportData('csv')" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-white transition shadow-sm">
             Export CSV
           </button>
         </div>
       </div>
 
-      <div class="surface-card rounded-2xl p-6 shadow-xl space-y-5">
+      <div class="ui-card rounded-2xl p-6 shadow-sm border ui-border space-y-5">
         <!-- Plugin Selector Pills and Search -->
-        <div class="flex flex-col lg:flex-row justify-between gap-4 items-start lg:items-center border-b border-slate-800 pb-4">
+        <div class="flex flex-col lg:flex-row justify-between gap-4 items-start lg:items-center border-b ui-border pb-4">
           <div class="flex flex-wrap items-center gap-2">
-            <button onclick="filterPlugin('ALL')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-500 text-white transition" data-p="ALL">All (__TOTAL_RECORDS__)</button>
-            <button onclick="filterPlugin('Tutor LMS')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold sub-card text-slate-300 hover:bg-slate-700 transition" data-p="Tutor LMS">Tutor LMS (__TUTOR_LEN__)</button>
-            <button onclick="filterPlugin('LearnPress')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold sub-card text-slate-300 hover:bg-slate-700 transition" data-p="LearnPress">LearnPress (__LP_LEN__)</button>
-            <button onclick="filterPlugin('LearnDash')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold sub-card text-slate-300 hover:bg-slate-700 transition" data-p="LearnDash">LearnDash (__LD_LEN__)</button>
+            <button onclick="filterPlugin('ALL')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-500 text-white transition shadow-sm" data-p="ALL">All (__TOTAL_RECORDS__)</button>
+            <button onclick="filterPlugin('Tutor LMS')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold ui-subcard ui-muted hover:ui-title transition border ui-border" data-p="Tutor LMS">Tutor LMS (__TUTOR_LEN__)</button>
+            <button onclick="filterPlugin('LearnPress')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold ui-subcard ui-muted hover:ui-title transition border ui-border" data-p="LearnPress">LearnPress (__LP_LEN__)</button>
+            <button onclick="filterPlugin('LearnDash')" class="plugin-pill px-3.5 py-1.5 rounded-xl text-xs font-bold ui-subcard ui-muted hover:ui-title transition border ui-border" data-p="LearnDash">LearnDash (__LD_LEN__)</button>
           </div>
 
           <div class="relative w-full lg:w-80">
             <input type="text" id="db-search" oninput="runFilter()" placeholder="Search CVE, SQLi, REST, parameter..." 
-              class="w-full bg-slate-900 border border-slate-700 text-xs px-3.5 py-2.5 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition">
-            <button onclick="clearSearch()" id="btn-clear-search" class="absolute right-3 top-2.5 text-slate-500 hover:text-white text-xs hidden">✕</button>
+              class="w-full ui-input border ui-border text-xs px-3.5 py-2.5 rounded-xl ui-title placeholder:ui-faint focus:outline-none focus:border-sky-500 transition">
+            <button onclick="clearSearch()" id="btn-clear-search" class="absolute right-3 top-2.5 ui-muted hover:ui-title text-xs hidden">✕</button>
           </div>
         </div>
 
         <!-- Multi-Attribute Filter Matrix -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
           <div>
-            <label class="block text-slate-400 text-[11px] mb-1 font-semibold">Timeline Preset</label>
-            <select id="db-date-preset" onchange="handleDatePresetChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-white focus:outline-none focus:border-sky-500">
+            <label class="block ui-muted text-[11px] mb-1 font-semibold">Timeline Preset</label>
+            <select id="db-date-preset" onchange="handleDatePresetChange()" class="w-full ui-input border ui-border rounded-xl px-2.5 py-2 ui-title focus:outline-none focus:border-sky-500">
               <option value="ALL" selected>All Time (2018–2026)</option>
               <option value="2026">2026 (Recent)</option>
               <option value="2024-2025">2024 – 2025 (Spike Era)</option>
@@ -475,8 +504,8 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 text-[11px] mb-1 font-semibold">Flaw Category</label>
-            <select id="db-category" onchange="runFilter()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-white focus:outline-none focus:border-sky-500">
+            <label class="block ui-muted text-[11px] mb-1 font-semibold">Flaw Category</label>
+            <select id="db-category" onchange="runFilter()" class="w-full ui-input border ui-border rounded-xl px-2.5 py-2 ui-title focus:outline-none focus:border-sky-500">
               <option value="ALL" selected>All Categories</option>
               <option value="SQL Injection">SQL Injection</option>
               <option value="Cross-Site Scripting (XSS)">XSS (Reflected & Stored)</option>
@@ -490,8 +519,8 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 text-[11px] mb-1 font-semibold">Severity Tier</label>
-            <select id="db-severity" onchange="runFilter()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-white focus:outline-none focus:border-sky-500">
+            <label class="block ui-muted text-[11px] mb-1 font-semibold">Severity Tier</label>
+            <select id="db-severity" onchange="runFilter()" class="w-full ui-input border ui-border rounded-xl px-2.5 py-2 ui-title focus:outline-none focus:border-sky-500">
               <option value="ALL" selected>All Severities</option>
               <option value="CRITICAL">Critical (9.0 – 10.0)</option>
               <option value="HIGH">High (7.0 – 8.9)</option>
@@ -501,8 +530,8 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 text-[11px] mb-1 font-semibold">Access Barrier</label>
-            <select id="db-auth" onchange="runFilter()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-white focus:outline-none focus:border-sky-500">
+            <label class="block ui-muted text-[11px] mb-1 font-semibold">Access Barrier</label>
+            <select id="db-auth" onchange="runFilter()" class="w-full ui-input border ui-border rounded-xl px-2.5 py-2 ui-title focus:outline-none focus:border-sky-500">
               <option value="ALL" selected>All Types</option>
               <option value="UNAUTH">Unauthenticated (Zero-Click)</option>
               <option value="AUTH">Authenticated Only</option>
@@ -510,14 +539,14 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 text-[11px] mb-1 font-semibold">Min CVSS: <span id="cvss-val-label" class="text-sky-400 font-bold">0.0</span></label>
+            <label class="block ui-muted text-[11px] mb-1 font-semibold">Min CVSS: <span id="cvss-val-label" class="text-sky-500 font-bold">0.0</span></label>
             <input type="range" id="db-min-cvss" min="0" max="10" step="0.5" value="0" oninput="document.getElementById('cvss-val-label').textContent = parseFloat(this.value).toFixed(1); runFilter();" 
               class="w-full mt-2">
           </div>
 
           <div>
-            <label class="block text-slate-400 text-[11px] mb-1 font-semibold">Sort Order</label>
-            <select id="db-sort" onchange="runFilter()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-white focus:outline-none focus:border-sky-500">
+            <label class="block ui-muted text-[11px] mb-1 font-semibold">Sort Order</label>
+            <select id="db-sort" onchange="runFilter()" class="w-full ui-input border ui-border rounded-xl px-2.5 py-2 ui-title focus:outline-none focus:border-sky-500">
               <option value="date-desc" selected>Newest First</option>
               <option value="date-asc">Oldest First</option>
               <option value="score-desc">Highest CVSS Score</option>
@@ -528,67 +557,67 @@
         </div>
 
         <!-- Custom Date Range Bar -->
-        <div id="custom-date-container" class="hidden p-3 bg-slate-900/90 rounded-xl border border-slate-700/80 flex flex-wrap items-center gap-4 text-xs">
-          <span class="font-semibold text-sky-400">Custom Date Range:</span>
+        <div id="custom-date-container" class="hidden p-3 ui-subcard rounded-xl border ui-border flex flex-wrap items-center gap-4 text-xs">
+          <span class="font-semibold text-sky-500">Custom Date Range:</span>
           <div class="flex items-center gap-2">
-            <span class="text-slate-400 text-[11px]">From:</span>
-            <input type="date" id="db-date-from" onchange="runFilter()" class="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1 text-white text-xs">
+            <span class="ui-muted text-[11px]">From:</span>
+            <input type="date" id="db-date-from" onchange="runFilter()" class="ui-input border ui-border rounded-lg px-2.5 py-1 ui-title text-xs">
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-slate-400 text-[11px]">To:</span>
-            <input type="date" id="db-date-to" onchange="runFilter()" class="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1 text-white text-xs">
+            <span class="ui-muted text-[11px]">To:</span>
+            <input type="date" id="db-date-to" onchange="runFilter()" class="ui-input border ui-border rounded-lg px-2.5 py-1 ui-title text-xs">
           </div>
-          <button onclick="clearCustomDates()" class="text-slate-400 hover:text-white underline text-[11px]">Clear Dates</button>
+          <button onclick="clearCustomDates()" class="ui-muted hover:ui-title underline text-[11px]">Clear Dates</button>
         </div>
 
         <div id="active-badges-bar" class="flex flex-wrap items-center gap-2 pt-1 text-xs"></div>
 
         <!-- Metric Summary Ribbon -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900/60 p-3 rounded-xl text-xs border border-slate-800">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 ui-subcard p-3 rounded-xl text-xs border ui-border">
           <div>
-            <span class="text-slate-400 block text-[10px]">Matching Records</span>
-            <strong id="metric-match-count" class="text-sm font-bold text-white">__TOTAL_RECORDS__</strong>
+            <span class="ui-faint block text-[10px]">Matching Records</span>
+            <strong id="metric-match-count" class="text-sm font-bold ui-title">__TOTAL_RECORDS__</strong>
           </div>
           <div>
-            <span class="text-slate-400 block text-[10px]">Unauthenticated</span>
-            <strong id="metric-unauth-count" class="text-sm font-bold text-rose-400">--</strong>
+            <span class="ui-faint block text-[10px]">Unauthenticated</span>
+            <strong id="metric-unauth-count" class="text-sm font-bold text-rose-500">--</strong>
           </div>
           <div>
-            <span class="text-slate-400 block text-[10px]">Critical + High</span>
-            <strong id="metric-crithigh-count" class="text-sm font-bold text-orange-400">--</strong>
+            <span class="ui-faint block text-[10px]">Critical + High</span>
+            <strong id="metric-crithigh-count" class="text-sm font-bold text-orange-500">--</strong>
           </div>
           <div>
-            <span class="text-slate-400 block text-[10px]">Average CVSS</span>
-            <strong id="metric-avg-cvss" class="text-sm font-bold text-sky-400">--</strong>
+            <span class="ui-faint block text-[10px]">Average CVSS</span>
+            <strong id="metric-avg-cvss" class="text-sm font-bold text-sky-500">--</strong>
           </div>
         </div>
 
         <!-- Table Container -->
-        <div class="overflow-x-auto rounded-xl border border-slate-800">
-          <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-slate-900/80 text-slate-400 font-semibold text-[11px] uppercase tracking-wider border-b border-slate-800">
+        <div class="overflow-x-auto rounded-xl border ui-border">
+          <table class="w-full text-left text-xs ui-body">
+            <thead class="ui-subcard ui-muted font-semibold text-[11px] uppercase tracking-wider border-b ui-border">
               <tr>
                 <th class="py-3 px-4">Plugin</th>
-                <th class="py-3 px-4 cursor-pointer hover:text-white" onclick="toggleSort('cve')">CVE Identifier ↕</th>
-                <th class="py-3 px-4 cursor-pointer hover:text-white" onclick="toggleSort('score')">CVSS ↕</th>
+                <th class="py-3 px-4 cursor-pointer hover:ui-title" onclick="toggleSort('cve')">CVE Identifier ↕</th>
+                <th class="py-3 px-4 cursor-pointer hover:ui-title" onclick="toggleSort('score')">CVSS ↕</th>
                 <th class="py-3 px-4">Severity</th>
                 <th class="py-3 px-4">Flaw Category</th>
                 <th class="py-3 px-4">Access Barrier</th>
-                <th class="py-3 px-4 cursor-pointer hover:text-white" onclick="toggleSort('date')">Disclosed ↕</th>
+                <th class="py-3 px-4 cursor-pointer hover:ui-title" onclick="toggleSort('date')">Disclosed ↕</th>
                 <th class="py-3 px-4">Technical Summary</th>
               </tr>
             </thead>
-            <tbody id="db-tbody" class="divide-y divide-slate-800"></tbody>
+            <tbody id="db-tbody" class="divide-y ui-border"></tbody>
           </table>
         </div>
 
         <!-- Pagination Bar -->
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs ui-muted pt-2 border-t ui-border">
           <div class="flex items-center gap-2">
             <span id="db-count-label">Showing __TOTAL_RECORDS__ records</span>
-            <span class="text-slate-600">|</span>
+            <span class="ui-faint">|</span>
             <span>Rows:</span>
-            <select id="db-page-size" onchange="handlePageSizeChange()" class="bg-slate-900 border border-slate-700 rounded px-2 py-0.5 text-slate-300">
+            <select id="db-page-size" onchange="handlePageSizeChange()" class="ui-input border ui-border rounded px-2 py-0.5 ui-body">
               <option value="25">25</option>
               <option value="50">50</option>
               <option value="100">100</option>
@@ -603,54 +632,54 @@
     <!-- 4. TOP EXPLOITS SHOWCASE -->
     <section id="top-exploits" class="space-y-6">
       <div>
-        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">Section 04</div>
-        <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white">The 10 Most Critical Exploits Showcase</h2>
-        <p class="text-xs text-slate-400 mt-0.5">Deep forensic analysis of the highest-impact real-world vulnerabilities</p>
+        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-1">Section 04</div>
+        <h2 class="text-xl sm:text-2xl font-black tracking-tight ui-title">The 10 Most Critical Exploits Showcase</h2>
+        <p class="text-xs ui-muted mt-0.5">Deep forensic analysis of the highest-impact real-world vulnerabilities</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="surface-card rounded-2xl p-6 border-l-4 border-l-rose-500 space-y-3">
+        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-rose-500 space-y-3 border ui-border shadow-sm">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-rose-400">LearnPress REST SQLi</span>
-            <span class="px-2 py-0.5 bg-red-600/20 text-red-400 font-mono font-bold text-xs rounded border border-red-500/30">CVSS 10.0</span>
+            <span class="text-xs font-bold text-rose-500">LearnPress REST SQLi</span>
+            <span class="px-2 py-0.5 bg-red-600/10 text-red-500 font-mono font-bold text-xs rounded border border-red-500/30">CVSS 10.0</span>
           </div>
-          <h3 class="font-bold text-base text-white">CVE-2024-8522 / CVE-2024-8529</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Unauthenticated blind SQL injection in public REST route <code class="text-rose-300 font-mono">/wp-json/lp/v1/courses/archive-course</code> via <code class="text-rose-300 font-mono">c_fields</code> parameter. Allowed unauthenticated attackers to dump administrative password hashes directly from the database.
+          <h3 class="font-bold text-base ui-title">CVE-2024-8522 / CVE-2024-8529</h3>
+          <p class="text-xs ui-body leading-relaxed">
+            Unauthenticated blind SQL injection in public REST route <code class="text-rose-500 font-mono font-bold">/wp-json/lp/v1/courses/archive-course</code> via <code class="text-rose-500 font-mono font-bold">c_fields</code> parameter. Allowed unauthenticated attackers to dump administrative password hashes directly from the database.
           </p>
-          <div class="text-[11px] text-slate-400 pt-2 border-t border-slate-800 flex justify-between">
+          <div class="text-[11px] ui-muted pt-2 border-t ui-border flex justify-between">
             <span>Patched in: 4.2.7</span>
-            <span class="text-rose-400 font-semibold">Zero Auth Needed</span>
+            <span class="text-rose-500 font-semibold">Zero Auth Needed</span>
           </div>
         </div>
 
-        <div class="surface-card rounded-2xl p-6 border-l-4 border-l-emerald-500 space-y-3">
+        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-emerald-500 space-y-3 border ui-border shadow-sm">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-emerald-400">LearnDash Check Point SQLi</span>
-            <span class="px-2 py-0.5 bg-red-600/20 text-red-400 font-mono font-bold text-xs rounded border border-red-500/30">CVSS 9.8</span>
+            <span class="text-xs font-bold text-emerald-500">LearnDash Check Point SQLi</span>
+            <span class="px-2 py-0.5 bg-red-600/10 text-red-500 font-mono font-bold text-xs rounded border border-red-500/30">CVSS 9.8</span>
           </div>
-          <h3 class="font-bold text-base text-white">CVE-2020-6009</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="font-bold text-base ui-title">CVE-2020-6009</h3>
+          <p class="text-xs ui-body leading-relaxed">
             Identified by Check Point Research. A regex flaw in shortcode attribute handling permitted unauthenticated remote SQL injection. LearnDash leadership deployed a hotfix in version 3.1.6 within <strong>48 hours</strong> of receipt.
           </p>
-          <div class="text-[11px] text-slate-400 pt-2 border-t border-slate-800 flex justify-between">
+          <div class="text-[11px] ui-muted pt-2 border-t ui-border flex justify-between">
             <span>Patched in: 3.1.6</span>
-            <span class="text-emerald-400 font-semibold">&lt;48h Patch Response</span>
+            <span class="text-emerald-500 font-semibold">&lt;48h Patch Response</span>
           </div>
         </div>
 
-        <div class="surface-card rounded-2xl p-6 border-l-4 border-l-amber-500 space-y-3">
+        <div class="ui-card rounded-2xl p-6 border-l-4 border-l-amber-500 space-y-3 border ui-border shadow-sm">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold text-amber-400">Tutor LMS Pro Auth Bypass</span>
-            <span class="px-2 py-0.5 bg-red-600/20 text-red-400 font-mono font-bold text-xs rounded border border-red-500/30">CVSS 9.8</span>
+            <span class="text-xs font-bold text-amber-500">Tutor LMS Pro Auth Bypass</span>
+            <span class="px-2 py-0.5 bg-red-600/10 text-red-500 font-mono font-bold text-xs rounded border border-red-500/30">CVSS 9.8</span>
           </div>
-          <h3 class="font-bold text-base text-white">CVE-2026-0953</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <h3 class="font-bold text-base ui-title">CVE-2026-0953</h3>
+          <p class="text-xs ui-body leading-relaxed">
             Authentication bypass flaw in Tutor LMS Pro allowing remote unauthenticated attackers to authenticate as arbitrary administrative users without credentials. Followed shortly by CVE-2026-16759 template-loader function execution.
           </p>
-          <div class="text-[11px] text-slate-400 pt-2 border-t border-slate-800 flex justify-between">
+          <div class="text-[11px] ui-muted pt-2 border-t ui-border flex justify-between">
             <span>Patched in: 3.9.6</span>
-            <span class="text-amber-400 font-semibold">Account Takeover</span>
+            <span class="text-amber-500 font-semibold">Account Takeover</span>
           </div>
         </div>
       </div>
@@ -659,54 +688,54 @@
     <!-- 5. ARCHITECTURAL ROOT CAUSE ANALYSIS -->
     <section id="architecture" class="space-y-6">
       <div>
-        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">Section 05</div>
-        <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white">Architectural Vulnerability Patterns & Root Cause Analysis</h2>
-        <p class="text-xs text-slate-400 mt-0.5">Why Tutor LMS, LearnPress, and LearnDash exhibit completely different security risk profiles</p>
+        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-1">Section 05</div>
+        <h2 class="text-xl sm:text-2xl font-black tracking-tight ui-title">Architectural Vulnerability Patterns & Root Cause Analysis</h2>
+        <p class="text-xs ui-muted mt-0.5">Why Tutor LMS, LearnPress, and LearnDash exhibit completely different security risk profiles</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="surface-card rounded-2xl p-6 space-y-4 border-t-2 border-t-amber-500/60">
+        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-amber-500 border ui-border shadow-sm">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold">1</div>
-            <h3 class="font-bold text-white text-base">Tutor LMS: Custom AJAX & SQL Regressions</h3>
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">1</div>
+            <h3 class="font-bold ui-title text-base">Tutor LMS: Custom AJAX & SQL Regressions</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs ui-body leading-relaxed">
             Themeum implemented dozens of custom wp_ajax_ actions and dynamic SQL queries rather than standard WordPress query abstractions. This design created recurring authorization flaws, where nonces were validated without verifying user capabilities or permissions.
           </p>
-          <ul class="text-xs text-slate-400 space-y-2 border-t border-slate-800 pt-3">
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span> Over 65 SQLi and IDOR flaws logged</li>
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span> Repetitive capability check bypasses</li>
-            <li class="flex items-start gap-1.5"><span class="text-amber-400">•</span> Frequent fast-paced hotfix cycles</li>
+          <ul class="text-xs ui-muted space-y-2 border-t ui-border pt-3">
+            <li class="flex items-start gap-1.5"><span class="text-amber-500">•</span> Over 65 SQLi and IDOR flaws logged</li>
+            <li class="flex items-start gap-1.5"><span class="text-amber-500">•</span> Repetitive capability check bypasses</li>
+            <li class="flex items-start gap-1.5"><span class="text-amber-500">•</span> Frequent fast-paced hotfix cycles</li>
           </ul>
         </div>
 
-        <div class="surface-card rounded-2xl p-6 space-y-4 border-t-2 border-t-rose-500/60">
+        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-rose-500 border ui-border shadow-sm">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold">2</div>
-            <h3 class="font-bold text-white text-base">LearnPress: Public REST & Unescaped Queries</h3>
+            <div class="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center font-bold">2</div>
+            <h3 class="font-bold ui-title text-base">LearnPress: Public REST & Unescaped Queries</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            ThimPress constructed customized REST routes that took complex JSON payloads directly into SQL statement fragments without using prepared statements (<code class="text-rose-300 font-mono">$wpdb-&gt;prepare</code>). This created massive unauthenticated attack vectors.
+          <p class="text-xs ui-body leading-relaxed">
+            ThimPress constructed customized REST routes that took complex JSON payloads directly into SQL statement fragments without using prepared statements (<code class="text-rose-500 font-mono font-bold">$wpdb-&gt;prepare</code>). This created massive unauthenticated attack vectors.
           </p>
-          <ul class="text-xs text-slate-400 space-y-2 border-t border-slate-800 pt-3">
-            <li class="flex items-start gap-1.5"><span class="text-rose-400">•</span> Multiple unauthenticated CVSS 10.0 / 9.8 SQLi</li>
-            <li class="flex items-start gap-1.5"><span class="text-rose-400">•</span> Path traversal and arbitrary file reads</li>
-            <li class="flex items-start gap-1.5"><span class="text-rose-400">•</span> Slow patch turnaround (14-30+ days)</li>
+          <ul class="text-xs ui-muted space-y-2 border-t ui-border pt-3">
+            <li class="flex items-start gap-1.5"><span class="text-rose-500">•</span> Multiple unauthenticated CVSS 10.0 / 9.8 SQLi</li>
+            <li class="flex items-start gap-1.5"><span class="text-rose-500">•</span> Path traversal and arbitrary file reads</li>
+            <li class="flex items-start gap-1.5"><span class="text-rose-500">•</span> Slow patch turnaround (14-30+ days)</li>
           </ul>
         </div>
 
-        <div class="surface-card rounded-2xl p-6 space-y-4 border-t-2 border-t-emerald-500/60">
+        <div class="ui-card rounded-2xl p-6 space-y-4 border-t-4 border-t-emerald-500 border ui-border shadow-sm">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">3</div>
-            <h3 class="font-bold text-white text-base">LearnDash: Native CPT Abstraction</h3>
+            <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">3</div>
+            <h3 class="font-bold ui-title text-base">LearnDash: Native CPT Abstraction</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            StellarWP adheres to core WordPress conventions: courses, lessons, and quizzes are standard Custom Post Types (<code class="text-emerald-300 font-mono">sfwd-courses</code>). Queries rely on <code class="text-emerald-300 font-mono">WP_Query</code> and core permissions, reducing raw SQL surface area by 85%.
+          <p class="text-xs ui-body leading-relaxed">
+            StellarWP adheres to core WordPress conventions: courses, lessons, and quizzes are standard Custom Post Types (<code class="text-emerald-500 font-mono font-bold">sfwd-courses</code>). Queries rely on <code class="text-emerald-500 font-mono font-bold">WP_Query</code> and core permissions, reducing raw SQL surface area by 85%.
           </p>
-          <ul class="text-xs text-slate-400 space-y-2 border-t border-slate-800 pt-3">
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">•</span> Only 14 confirmed core CVEs over 14 years</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">•</span> Strict enterprise code review pipelines</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">•</span> 24-48h security patch SLA</li>
+          <ul class="text-xs ui-muted space-y-2 border-t ui-border pt-3">
+            <li class="flex items-start gap-1.5"><span class="text-emerald-500">•</span> Only 14 confirmed core CVEs over 14 years</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-500">•</span> Strict enterprise code review pipelines</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-500">•</span> 24-48h security patch SLA</li>
           </ul>
         </div>
       </div>
@@ -715,127 +744,127 @@
     <!-- 6. RISK SIMULATOR -->
     <section id="simulator" class="space-y-6">
       <div>
-        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold mb-1">Section 06</div>
-        <h2 class="text-xl sm:text-2xl font-black tracking-tight text-white">Interactive Risk Scenario Modeler</h2>
-        <p class="text-xs text-slate-400 mt-0.5">Customize threat factor weights to evaluate the plugins under your organization's specific threat model</p>
+        <div class="text-[11px] font-mono uppercase tracking-wider text-sky-500 font-bold mb-1">Section 06</div>
+        <h2 class="text-xl sm:text-2xl font-black tracking-tight ui-title">Interactive Risk Scenario Modeler</h2>
+        <p class="text-xs ui-muted mt-0.5">Customize threat factor weights to evaluate the plugins under your organization's specific threat model</p>
       </div>
 
-      <div class="surface-card rounded-2xl p-6 shadow-xl space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sub-card p-5 rounded-xl">
+      <div class="ui-card rounded-2xl p-6 shadow-sm border ui-border space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 ui-subcard p-5 rounded-xl border ui-border">
           <div>
             <div class="flex justify-between text-xs font-semibold mb-1.5">
-              <label>Remote Code Execution (RCE) Weight</label>
-              <span id="sim-val-rce" class="text-sky-400 font-mono">10</span>
+              <label class="ui-title">Remote Code Execution (RCE) Weight</label>
+              <span id="sim-val-rce" class="text-sky-500 font-mono font-bold">10</span>
             </div>
             <input type="range" min="1" max="25" value="10" id="sim-rce" oninput="runSimulation()" class="w-full">
-            <span class="text-[11px] text-slate-400">Catastrophic server takeover</span>
+            <span class="text-[11px] ui-faint">Catastrophic server takeover</span>
           </div>
 
           <div>
             <div class="flex justify-between text-xs font-semibold mb-1.5">
-              <label>Unauthenticated SQLi Weight</label>
-              <span id="sim-val-sqli" class="text-sky-400 font-mono">9</span>
+              <label class="ui-title">Unauthenticated SQLi Weight</label>
+              <span id="sim-val-sqli" class="text-sky-500 font-mono font-bold">9</span>
             </div>
             <input type="range" min="1" max="25" value="9" id="sim-sqli" oninput="runSimulation()" class="w-full">
-            <span class="text-[11px] text-slate-400">Direct database exfiltration</span>
+            <span class="text-[11px] ui-faint">Direct database exfiltration</span>
           </div>
 
           <div>
             <div class="flex justify-between text-xs font-semibold mb-1.5">
-              <label>Unauthenticated Factor Multiplier</label>
-              <span id="sim-val-unauth" class="text-sky-400 font-mono">1.25x</span>
+              <label class="ui-title">Unauthenticated Multiplier</label>
+              <span id="sim-val-unauth" class="text-sky-500 font-mono font-bold">1.25x</span>
             </div>
             <input type="range" min="1" max="3" step="0.25" value="1.25" id="sim-unauth" oninput="runSimulation()" class="w-full">
-            <span class="text-[11px] text-slate-400">Zero-credential exploit penalty</span>
+            <span class="text-[11px] ui-faint">Zero-credential exploit penalty</span>
           </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="sub-card p-4 rounded-xl flex items-center justify-between">
+          <div class="ui-subcard p-4 rounded-xl border ui-border flex items-center justify-between">
             <div>
-              <span class="text-xs text-slate-400">LearnDash Simulated WIS</span>
-              <div id="sim-score-ld" class="text-2xl font-black text-emerald-400">__LD_WIS__</div>
+              <span class="text-xs ui-muted font-medium">LearnDash Simulated WIS</span>
+              <div id="sim-score-ld" class="text-2xl font-black text-emerald-500">__LD_WIS__</div>
             </div>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Lowest Risk</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 font-bold">Lowest Risk</span>
           </div>
 
-          <div class="sub-card p-4 rounded-xl flex items-center justify-between">
+          <div class="ui-subcard p-4 rounded-xl border ui-border flex items-center justify-between">
             <div>
-              <span class="text-xs text-slate-400">Tutor LMS Simulated WIS</span>
-              <div id="sim-score-tutor" class="text-2xl font-black text-amber-400">__TUTOR_WIS__</div>
+              <span class="text-xs ui-muted font-medium">Tutor LMS Simulated WIS</span>
+              <div id="sim-score-tutor" class="text-2xl font-black text-amber-500">__TUTOR_WIS__</div>
             </div>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-bold">Moderate Exposure</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20 font-bold">Moderate Exposure</span>
           </div>
 
-          <div class="sub-card p-4 rounded-xl flex items-center justify-between">
+          <div class="ui-subcard p-4 rounded-xl border ui-border flex items-center justify-between">
             <div>
-              <span class="text-xs text-slate-400">LearnPress Simulated WIS</span>
-              <div id="sim-score-lp" class="text-2xl font-black text-rose-400">__LP_WIS__</div>
+              <span class="text-xs ui-muted font-medium">LearnPress Simulated WIS</span>
+              <div id="sim-score-lp" class="text-2xl font-black text-rose-500">__LP_WIS__</div>
             </div>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-bold">High Severity Threat</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-500 border border-rose-500/20 font-bold">High Severity Threat</span>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500 mt-auto">
+  <footer class="border-t ui-border py-8 text-center text-xs ui-faint mt-auto ui-subcard">
     <div class="max-w-7xl mx-auto px-4">
-      <p>WordPress LMS Security Analysis Benchmark &copy; 2026. Daily Synchronized Intelligence Engine.</p>
-      <p class="mt-1 text-[11px] text-slate-600">Cross-verified with NIST NVD, Wordfence, Patchstack, WPScan & WordPress Trac.</p>
+      <p class="ui-body font-medium">WordPress LMS Security Analysis Benchmark &copy; 2026. Daily Synchronized Intelligence Engine.</p>
+      <p class="mt-1 text-[11px] ui-faint">Cross-verified with NIST NVD 2.0, Wordfence, Patchstack, WPScan & WordPress Trac.</p>
     </div>
   </footer>
 </div>
 
 <!-- Modal for CVE Details -->
-<div id="cve-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-  <div class="surface-card max-w-2xl w-full rounded-2xl p-6 shadow-2xl space-y-4 border border-slate-700">
+<div id="cve-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+  <div class="ui-card max-w-2xl w-full rounded-2xl p-6 shadow-2xl space-y-4 border ui-border">
     <div class="flex justify-between items-start">
       <div>
         <span id="m-plugin" class="px-2.5 py-0.5 rounded text-[10px] font-bold">Plugin</span>
-        <h3 id="m-cve" class="text-xl font-bold text-white mt-1">CVE-XXXX-XXXX</h3>
+        <h3 id="m-cve" class="text-xl font-bold ui-title mt-1">CVE-XXXX-XXXX</h3>
       </div>
-      <button onclick="closeModal()" class="text-slate-400 hover:text-white text-lg font-bold">✕</button>
+      <button onclick="closeModal()" class="ui-muted hover:ui-title text-lg font-bold">✕</button>
     </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900 p-3 rounded-xl text-xs">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 ui-subcard p-3 rounded-xl text-xs border ui-border">
       <div>
-        <span class="text-slate-500 block">CVSS Score</span>
-        <span id="m-score" class="font-bold text-white text-sm">--</span>
+        <span class="ui-faint block text-[10px]">CVSS Score</span>
+        <span id="m-score" class="font-bold ui-title text-sm">--</span>
       </div>
       <div>
-        <span class="text-slate-500 block">Severity</span>
+        <span class="ui-faint block text-[10px]">Severity</span>
         <span id="m-sev" class="font-bold">--</span>
       </div>
       <div>
-        <span class="text-slate-500 block">Access Barrier</span>
-        <span id="m-auth" class="font-bold text-white">--</span>
+        <span class="ui-faint block text-[10px]">Access Barrier</span>
+        <span id="m-auth" class="font-bold ui-title">--</span>
       </div>
       <div>
-        <span class="text-slate-500 block">Disclosed Date</span>
-        <span id="m-date" class="font-bold text-white">--</span>
+        <span class="ui-faint block text-[10px]">Disclosed Date</span>
+        <span id="m-date" class="font-bold ui-title">--</span>
       </div>
     </div>
 
     <div>
-      <h4 class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Root Vulnerability Details</h4>
-      <p id="m-desc" class="text-xs text-slate-200 mt-1 leading-relaxed bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+      <h4 class="text-[11px] font-semibold ui-muted uppercase tracking-wider">Root Vulnerability Details</h4>
+      <p id="m-desc" class="text-xs ui-body mt-1 leading-relaxed ui-subcard p-3 rounded-xl border ui-border">
         Description
       </p>
     </div>
 
     <div class="text-xs">
-      <span class="text-slate-400 block font-semibold text-[11px] uppercase tracking-wider">CVSS v3.1 Vector</span>
-      <code id="m-vector" class="block font-mono bg-slate-900 p-2 rounded-lg text-sky-400 text-[11px] mt-1 break-all">--</code>
+      <span class="ui-muted block font-semibold text-[11px] uppercase tracking-wider">CVSS v3.1 Vector</span>
+      <code id="m-vector" class="block font-mono ui-subcard p-2 rounded-lg text-sky-500 text-[11px] mt-1 break-all border ui-border">--</code>
     </div>
 
     <div>
-      <h4 class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Authoritative References</h4>
-      <ul id="m-refs" class="text-xs text-sky-400 mt-1 space-y-1 max-h-24 overflow-y-auto"></ul>
+      <h4 class="text-[11px] font-semibold ui-muted uppercase tracking-wider">Authoritative References</h4>
+      <ul id="m-refs" class="text-xs text-sky-500 mt-1 space-y-1 max-h-24 overflow-y-auto"></ul>
     </div>
 
     <div class="pt-2 flex justify-end">
-      <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl transition">Close</button>
+      <button onclick="closeModal()" class="px-4 py-2 ui-subcard hover:ui-hover-bg ui-title text-xs font-semibold rounded-xl border ui-border transition shadow-sm">Close</button>
     </div>
   </div>
 </div>
@@ -893,11 +922,9 @@
       links.forEach(link => {
         const sec = link.getAttribute('data-section');
         if (sec === current) {
-          link.classList.add('bg-sky-500/15', 'text-sky-400', 'border-l-2', 'border-sky-400', 'font-semibold');
-          link.classList.remove('text-slate-300');
+          link.classList.add('sidebar-nav-active');
         } else {
-          link.classList.remove('bg-sky-500/15', 'text-sky-400', 'border-l-2', 'border-sky-400', 'font-semibold');
-          link.classList.add('text-slate-300');
+          link.classList.remove('sidebar-nav-active');
         }
       });
     }, { passive: true });
@@ -907,11 +934,11 @@
     currentPlugin = p;
     document.querySelectorAll('.plugin-pill').forEach(btn => {
       if (btn.getAttribute('data-p') === p) {
-        btn.classList.remove('sub-card', 'text-slate-300');
-        btn.classList.add('bg-sky-500', 'text-white');
+        btn.classList.remove('ui-subcard', 'ui-muted');
+        btn.classList.add('bg-sky-500', 'text-white', 'shadow-sm');
       } else {
-        btn.classList.remove('bg-sky-500', 'text-white');
-        btn.classList.add('sub-card', 'text-slate-300');
+        btn.classList.remove('bg-sky-500', 'text-white', 'shadow-sm');
+        btn.classList.add('ui-subcard', 'ui-muted');
       }
     });
     runFilter();
@@ -953,11 +980,11 @@
     currentPlugin = 'ALL';
     document.querySelectorAll('.plugin-pill').forEach(btn => {
       if (btn.getAttribute('data-p') === 'ALL') {
-        btn.classList.remove('sub-card', 'text-slate-300');
+        btn.classList.remove('ui-subcard', 'ui-muted');
         btn.classList.add('bg-sky-500', 'text-white');
       } else {
         btn.classList.remove('bg-sky-500', 'text-white');
-        btn.classList.add('sub-card', 'text-slate-300');
+        btn.classList.add('ui-subcard', 'ui-muted');
       }
     });
     document.getElementById('db-search').value = '';
@@ -1064,9 +1091,9 @@
     }
 
     container.innerHTML = badges.map((b, idx) => `
-      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-300 text-xs font-medium">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-500 text-xs font-medium">
         ${b.label}
-        <button onclick="window._resetBadge(${idx})" class="hover:text-white font-bold ml-1 text-slate-400">✕</button>
+        <button onclick="window._resetBadge(${idx})" class="hover:ui-title font-bold ml-1 ui-muted">✕</button>
       </span>
     `).join('');
 
@@ -1105,10 +1132,10 @@
     if (!currentFiltered.length) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="8" class="text-center py-12 text-slate-400">
+          <td colspan="8" class="text-center py-12 ui-muted">
             <div class="text-3xl mb-2">🔍</div>
-            <p class="font-semibold text-white">No vulnerabilities match your active filter criteria.</p>
-            <button onclick="resetAllFilters()" class="mt-3 px-3.5 py-1.5 rounded-xl bg-sky-500 text-white font-semibold text-xs">Reset All Filters</button>
+            <p class="font-semibold ui-title">No vulnerabilities match your active filter criteria.</p>
+            <button onclick="resetAllFilters()" class="mt-3 px-3.5 py-1.5 rounded-xl bg-sky-500 text-white font-semibold text-xs shadow-sm">Reset All Filters</button>
           </td>
         </tr>
       `;
@@ -1129,9 +1156,9 @@
 
       let pagesHtml = '';
       if (totalPages > 1) {
-        pagesHtml += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} class="px-2 py-1 rounded bg-slate-800 disabled:opacity-30">Prev</button>`;
-        pagesHtml += `<span class="px-2 text-slate-300">Page ${currentPage} / ${totalPages}</span>`;
-        pagesHtml += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} class="px-2 py-1 rounded bg-slate-800 disabled:opacity-30">Next</button>`;
+        pagesHtml += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} class="px-2.5 py-1 rounded-lg ui-subcard ui-title border ui-border disabled:opacity-30">Prev</button>`;
+        pagesHtml += `<span class="px-2 ui-body">Page ${currentPage} / ${totalPages}</span>`;
+        pagesHtml += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} class="px-2.5 py-1 rounded-lg ui-subcard ui-title border ui-border disabled:opacity-30">Next</button>`;
       }
       paginationContainer.innerHTML = pagesHtml;
     } else {
@@ -1140,35 +1167,35 @@
     }
 
     tbody.innerHTML = itemsToRender.map(item => {
-      let badgeColor = 'bg-slate-800 text-slate-300 border-slate-700';
-      if (item.plugin === 'Tutor LMS') badgeColor = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-      else if (item.plugin === 'LearnPress') badgeColor = 'bg-rose-500/10 text-rose-400 border-rose-500/20';
-      else if (item.plugin === 'LearnDash') badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+      let badgeColor = 'ui-subcard ui-muted border-ui';
+      if (item.plugin === 'Tutor LMS') badgeColor = 'bg-amber-500/10 text-amber-500 border border-amber-500/30';
+      else if (item.plugin === 'LearnPress') badgeColor = 'bg-rose-500/10 text-rose-500 border border-rose-500/30';
+      else if (item.plugin === 'LearnDash') badgeColor = 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/30';
 
-      let sevBadge = 'bg-slate-800 text-slate-400';
-      if (item.severity === 'CRITICAL') sevBadge = 'bg-red-500/15 text-red-400 border border-red-500/30';
-      else if (item.severity === 'HIGH') sevBadge = 'bg-orange-500/15 text-orange-400 border border-orange-500/30';
-      else if (item.severity === 'MEDIUM') sevBadge = 'bg-amber-500/15 text-amber-400 border border-amber-500/30';
-      else if (item.severity === 'LOW') sevBadge = 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30';
+      let sevBadge = 'ui-subcard ui-muted border ui-border';
+      if (item.severity === 'CRITICAL') sevBadge = 'bg-red-500/15 text-red-500 border border-red-500/30';
+      else if (item.severity === 'HIGH') sevBadge = 'bg-orange-500/15 text-orange-500 border border-orange-500/30';
+      else if (item.severity === 'MEDIUM') sevBadge = 'bg-amber-500/15 text-amber-500 border border-amber-500/30';
+      else if (item.severity === 'LOW') sevBadge = 'bg-emerald-500/15 text-emerald-500 border border-emerald-500/30';
 
       let authBadge = item.unauth
-        ? '<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">Unauthenticated</span>'
-        : '<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">Authenticated</span>';
+        ? '<span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 text-rose-500 border border-rose-500/30">Unauthenticated</span>'
+        : '<span class="px-2 py-0.5 rounded text-[10px] font-semibold ui-subcard ui-muted border ui-border">Authenticated</span>';
 
       return `
-        <tr class="hover:bg-slate-800/40 transition cursor-pointer" onclick="openModal('${item.cve}')">
+        <tr class="ui-table-row transition cursor-pointer" onclick="openModal('${item.cve}')">
           <td class="py-3 px-4">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold border ${badgeColor} whitespace-nowrap">${item.plugin}</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${badgeColor} whitespace-nowrap">${item.plugin}</span>
           </td>
-          <td class="py-3 px-4 font-mono font-bold text-sky-400 whitespace-nowrap">${item.cve}</td>
-          <td class="py-3 px-4 font-mono font-bold">${item.score.toFixed(1)}</td>
+          <td class="py-3 px-4 font-mono font-bold text-sky-500 whitespace-nowrap">${item.cve}</td>
+          <td class="py-3 px-4 font-mono font-bold ui-title">${item.score.toFixed(1)}</td>
           <td class="py-3 px-4">
             <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${sevBadge}">${item.severity}</span>
           </td>
-          <td class="py-3 px-4 whitespace-nowrap">${item.cat}</td>
+          <td class="py-3 px-4 whitespace-nowrap ui-body">${item.cat}</td>
           <td class="py-3 px-4 whitespace-nowrap">${authBadge}</td>
-          <td class="py-3 px-4 font-mono text-slate-400 whitespace-nowrap">${item.pub}</td>
-          <td class="py-3 px-4 text-slate-300 max-w-xs truncate" title="${item.desc}">${item.desc}</td>
+          <td class="py-3 px-4 font-mono ui-muted whitespace-nowrap">${item.pub}</td>
+          <td class="py-3 px-4 ui-muted max-w-xs truncate" title="${item.desc}">${item.desc}</td>
         </tr>
       `;
     }).join('');
@@ -1186,9 +1213,9 @@
     document.getElementById('m-cve').textContent = item.cve;
     const mPlugin = document.getElementById('m-plugin');
     mPlugin.textContent = item.plugin;
-    if (item.plugin === 'Tutor LMS') mPlugin.className = 'px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20';
-    else if (item.plugin === 'LearnPress') mPlugin.className = 'px-2.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20';
-    else mPlugin.className = 'px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+    if (item.plugin === 'Tutor LMS') mPlugin.className = 'px-2.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/30';
+    else if (item.plugin === 'LearnPress') mPlugin.className = 'px-2.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-500 border border-rose-500/30';
+    else mPlugin.className = 'px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30';
 
     document.getElementById('m-score').textContent = item.score.toFixed(1);
     document.getElementById('m-sev').textContent = item.severity;
@@ -1201,7 +1228,7 @@
     if (item.refs && item.refs.length) {
       refs.innerHTML = item.refs.map(r => `<li><a href="${r}" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1"><span>🔗</span> <span class="truncate">${r}</span></a></li>`).join('');
     } else {
-      refs.innerHTML = '<li class="text-slate-500">No external advisory URLs recorded.</li>';
+      refs.innerHTML = '<li class="ui-faint">No external advisory URLs recorded.</li>';
     }
 
     document.getElementById('cve-modal').classList.remove('hidden');
@@ -1278,22 +1305,38 @@
 
   function toggleTheme() {
     const b = document.body;
-    const icon = document.getElementById('theme-icon');
-    const label = document.getElementById('theme-label');
-    if (b.classList.contains('light-theme')) {
-      b.classList.remove('light-theme');
-      if (icon) icon.textContent = '🌙';
-      if (label) label.textContent = 'Theme';
-    } else {
+    const isLight = b.classList.contains('light-theme');
+    const newTheme = isLight ? 'dark' : 'light';
+    applyTheme(newTheme);
+  }
+
+  function applyTheme(theme) {
+    const b = document.body;
+    const sidebarIcon = document.getElementById('theme-icon');
+    const sidebarLabel = document.getElementById('theme-label');
+    const topIcon = document.getElementById('top-theme-icon');
+
+    if (theme === 'light') {
       b.classList.add('light-theme');
-      if (icon) icon.textContent = '☀️';
-      if (label) label.textContent = 'Theme';
+      if (sidebarIcon) sidebarIcon.textContent = '☀️';
+      if (topIcon) topIcon.textContent = '☀️';
+      if (sidebarLabel) sidebarLabel.textContent = 'Light';
+      localStorage.setItem('seclms_theme', 'light');
+    } else {
+      b.classList.remove('light-theme');
+      if (sidebarIcon) sidebarIcon.textContent = '🌙';
+      if (topIcon) topIcon.textContent = '🌙';
+      if (sidebarLabel) sidebarLabel.textContent = 'Dark';
+      localStorage.setItem('seclms_theme', 'dark');
     }
   }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
+
+  const savedTheme = localStorage.getItem('seclms_theme') || 'dark';
+  applyTheme(savedTheme);
 
   runFilter();
   initScrollSpy();

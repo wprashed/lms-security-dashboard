@@ -111,66 +111,73 @@ const secureHtml = `<!DOCTYPE html>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --bg-color: #0b0f19;
-      --surface-color: #111827;
-      --card-color: #1f2937;
-      --border-color: #374151;
-      --text-main: #f9fafb;
-      --text-dim: #9ca3af;
-      --accent-tutor: #f59e0b;
-      --accent-lp: #f43f5e;
-      --accent-ld: #10b981;
-      --accent-brand: #38bdf8;
+      --bg-main: #0b0f19;
+      --bg-sidebar: #0f172a;
+      --bg-card: #111827;
+      --bg-card-sub: #1e293b;
+      --bg-header: rgba(11, 15, 25, 0.90);
+      --bg-input: #0f172a;
+      --border-main: #1e293b;
+      --border-subtle: #334155;
+      --text-title: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --table-row-hover: rgba(30, 41, 59, 0.5);
+      --sidebar-nav-active-bg: rgba(14, 165, 233, 0.15);
+      --sidebar-nav-active-border: #0ea5e9;
+      --sidebar-nav-active-text: #38bdf8;
     }
     .light-theme {
-      --bg-color: #f8fafc;
-      --surface-color: #ffffff;
-      --card-color: #f1f5f9;
-      --border-color: #cbd5e1;
-      --text-main: #0f172a;
-      --text-dim: #64748b;
+      --bg-main: #f8fafc;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-sub: #f1f5f9;
+      --bg-header: rgba(255, 255, 255, 0.92);
+      --bg-input: #f8fafc;
+      --border-main: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --text-title: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --text-faint: #94a3b8;
+      --table-row-hover: #f1f5f9;
+      --sidebar-nav-active-bg: rgba(14, 165, 233, 0.1);
+      --sidebar-nav-active-border: #0284c7;
+      --sidebar-nav-active-text: #0284c7;
     }
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background-color: var(--bg-main);
+      color: var(--text-body);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .surface-card {
-      background-color: var(--surface-color);
-      border: 1px solid var(--border-color);
+    .ui-sidebar { background-color: var(--bg-sidebar); }
+    .ui-header { background-color: var(--bg-header); backdrop-filter: blur(12px); }
+    .ui-card { background-color: var(--bg-card); }
+    .ui-subcard { background-color: var(--bg-card-sub); }
+    .ui-border { border-color: var(--border-main); }
+    .ui-input { background-color: var(--bg-input); }
+    .ui-title { color: var(--text-title); }
+    .ui-body { color: var(--text-body); }
+    .ui-muted { color: var(--text-muted); }
+    .ui-faint { color: var(--text-faint); }
+    .ui-hover-bg:hover { background-color: var(--table-row-hover); }
+    .ui-table-row:hover { background-color: var(--table-row-hover); }
+    .sidebar-nav-active {
+      background-color: var(--sidebar-nav-active-bg) !important;
+      color: var(--sidebar-nav-active-text) !important;
+      border-left: 3px solid var(--sidebar-nav-active-border) !important;
+      font-weight: 700 !important;
     }
-    .sub-card {
-      background-color: var(--card-color);
-      border: 1px solid var(--border-color);
-    }
-    .glass-nav {
-      background-color: rgba(11, 15, 25, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-    }
-    .light-theme .glass-nav {
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-    .light-theme aside#app-sidebar {
-      background-color: rgba(248, 250, 252, 0.96);
-      border-color: #e2e8f0;
-    }
-    .light-theme aside#app-sidebar nav a.sidebar-nav-link {
-      color: #334155;
-    }
-    .light-theme aside#app-sidebar nav a.sidebar-nav-link:hover {
-      background-color: #e2e8f0;
-      color: #0f172a;
-    }
-    .glow-tutor { box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.15); }
-    .glow-lp { box-shadow: 0 0 25px -5px rgba(244, 63, 94, 0.15); }
-    .glow-ld { box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.15); }
+    .glow-tutor { box-shadow: 0 4px 20px -4px rgba(245, 158, 11, 0.12); }
+    .glow-lp { box-shadow: 0 4px 20px -4px rgba(244, 63, 94, 0.12); }
+    .glow-ld { box-shadow: 0 4px 20px -4px rgba(16, 185, 129, 0.12); }
 
-    ::-webkit-scrollbar { width: 7px; height: 7px; }
-    ::-webkit-scrollbar-track { background: var(--bg-color); }
-    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-main); }
+    ::-webkit-scrollbar-thumb { background: var(--border-main); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
 
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
@@ -182,43 +189,43 @@ const secureHtml = `<!DOCTYPE html>
 </head>
 <body class="antialiased min-h-screen">
   <!-- Authentication Lock Screen -->
-  <div id="auth-lock-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0b0f19]">
-    <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none"></div>
+  <div id="auth-lock-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: var(--bg-main);">
+    <div class="absolute inset-0 bg-[radial-gradient(#64748b_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none"></div>
 
-    <div id="auth-card" class="relative max-w-md w-full surface-card rounded-3xl p-8 shadow-2xl space-y-6 border border-slate-700/80">
+    <div id="auth-card" class="relative max-w-md w-full ui-card rounded-3xl p-8 shadow-2xl space-y-6 border ui-border">
       <div class="text-center space-y-3">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-3xl mx-auto shadow-lg shadow-sky-500/10">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-3xl mx-auto shadow-md">
           🔒
         </div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-sky-500/10 text-sky-400 border border-sky-500/20 whitespace-nowrap">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-sky-500/10 text-sky-500 border border-sky-500/20 whitespace-nowrap">
           <span>AES-256-GCM Encrypted</span>
         </div>
-        <h1 class="text-xl font-black text-white tracking-tight">SecLMS Intelligence Portal</h1>
-        <p class="text-xs text-slate-400 leading-relaxed">
+        <h1 class="text-xl font-black ui-title tracking-tight">SecLMS Intelligence Portal</h1>
+        <p class="text-xs ui-muted leading-relaxed">
           Daily synchronized vulnerability benchmark for Tutor LMS, LearnPress, and LearnDash. Please authenticate to decrypt.
         </p>
       </div>
 
       <form id="auth-form" onsubmit="handleUnlock(event)" class="space-y-4">
         <div class="space-y-1.5">
-          <label class="block text-xs font-semibold text-slate-300">Access Key / Password</label>
+          <label class="block text-xs font-semibold ui-body">Access Key / Password</label>
           <div class="relative">
             <input type="password" id="input-password" placeholder="Enter dashboard password..." required
-              class="w-full bg-slate-900 border border-slate-700 focus:border-sky-500 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none transition pr-10">
-            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 text-slate-400 hover:text-slate-200 text-sm focus:outline-none">
+              class="w-full ui-input border ui-border focus:border-sky-500 rounded-xl px-4 py-3 text-sm ui-title placeholder:ui-faint focus:outline-none transition pr-10 shadow-sm">
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 ui-muted hover:ui-title text-sm focus:outline-none">
               <span id="eye-icon">👁️</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center justify-between text-xs">
-          <label class="flex items-center gap-2 text-slate-400 cursor-pointer select-none">
-            <input type="checkbox" id="remember-session" checked class="rounded bg-slate-900 border-slate-700 text-sky-500 focus:ring-0">
+          <label class="flex items-center gap-2 ui-muted cursor-pointer select-none">
+            <input type="checkbox" id="remember-session" checked class="rounded ui-input border ui-border text-sky-500 focus:ring-0">
             <span>Remember for this browser session</span>
           </label>
         </div>
 
-        <div id="auth-error-msg" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-medium flex items-center gap-2">
+        <div id="auth-error-msg" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 text-xs font-medium flex items-center gap-2">
           <span>⚠️</span>
           <span>Incorrect password. Access denied.</span>
         </div>
@@ -355,6 +362,12 @@ const secureHtml = `<!DOCTYPE html>
       document.getElementById('input-password').value = '';
       document.getElementById('auth-lock-screen').classList.remove('hidden');
       document.getElementById('input-password').focus();
+    }
+
+    // Initialize saved theme on lock screen
+    const savedTheme = localStorage.getItem('seclms_theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
