@@ -3693,5 +3693,151 @@
       "https://patchstack.com/database/vulnerability/learnpress-import-export/wordpress-learnpress-export-import-plugin-4-0-3-reflected-cross-site-scripting-xss-vulnerability?_s_id=cve",
       "https://patchstack.com/database/vulnerability/learnpress-import-export/wordpress-learnpress-export-import-plugin-4-0-3-reflected-cross-site-scripting-xss-vulnerability?_s_id=cve"
     ]
+  },
+  {
+    "cve": "CVE-2026-12483",
+    "plugin": "LearnDash",
+    "score": 7.5,
+    "severity": "HIGH",
+    "type": "Arbitrary File Upload",
+    "cat": "Arbitrary File Upload",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+    "unauth": false,
+    "pub": "2026-09-04",
+    "year": "2026",
+    "desc": "The LearnDash LMS plugin for WordPress is vulnerable to Unrestricted File Type Upload in versions up to and including 5.1.5. This is due to insufficient input validation in the 'learndash_fileupload_process' function, which iterates through an entire array and validates only the first file. This makes it possible for authenticated attackers, with subscriber-level access and above who are enrolled in a course with assignment uploads enabled, to upload arbitrary disallowed files, including PHP files, to the server's wp-content/uploads/learndash/assignments/ directory. The uploaded files can only be used for Remote Code Execution if default server configurations have been changed to allow for execution.",
+    "cna": "security@wordfence.com",
+    "refs": [
+      "https://www.liquidweb.com/software/learndash/",
+      "https://www.wordfence.com/threat-intel/vulnerabilities/id/a539ba27-ad9b-4fe6-8df4-71e262c7b158?source=cve"
+    ]
+  },
+  {
+    "cve": "CVE-2026-12843",
+    "plugin": "LearnDash",
+    "score": 5.4,
+    "severity": "MEDIUM",
+    "type": "Authorization Bypass / Broken Access Control",
+    "cat": "Broken Access Control",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+    "unauth": true,
+    "pub": "2026-09-05",
+    "year": "2026",
+    "desc": "The LearnDash LMS plugin for WordPress is vulnerable to authorization bypass in versions 4.25.0 - 5.1.6. This is due to the plugin not properly verifying that a user is authorized to perform an action. This makes it possible for unauthenticated attackers to enroll arbitrary users in paid courses without payment verification, bypassing the entire payment system and gaining unauthorized access to premium educational content.",
+    "cna": "security@wordfence.com",
+    "refs": [
+      "https://docs.nexcess.com/software/changelogs/learndash/sfwd-lms/5-1-6-1/",
+      "https://www.wordfence.com/threat-intel/vulnerabilities/id/48d29e8d-4084-401e-82ff-e4750d739c7c?source=cve"
+    ]
+  },
+  {
+    "cve": "CVE-2024-9609",
+    "plugin": "LearnPress",
+    "score": 6.1,
+    "severity": "MEDIUM",
+    "type": "Reflected XSS",
+    "cat": "Reflected XSS",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+    "unauth": true,
+    "pub": "2024-11-15",
+    "year": "2024",
+    "desc": "The LearnPress Export Import \u2013 WordPress extension for LearnPress plugin for WordPress is vulnerable to Reflected Cross-Site Scripting via the 'learnpress_import_form_server' parameter in all versions up to, and including, 4.0.4 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link.",
+    "cna": "security@wordfence.com",
+    "refs": [
+      "https://plugins.trac.wordpress.org/browser/learnpress-import-export/trunk/inc/admin/providers/learnpress/class-lp-import-learnpress.php#L90",
+      "https://plugins.trac.wordpress.org/browser/learnpress-import-export/trunk/inc/admin/views/import.php#L23",
+      "https://plugins.trac.wordpress.org/changeset/3186901/learnpress-import-export/trunk/inc/admin/providers/learnpress/class-lp-import-learnpress.php",
+      "https://plugins.trac.wordpress.org/changeset/3186901/learnpress-import-export/trunk/inc/admin/views/import.php"
+    ]
+  },
+  {
+    "cve": "CVE-2025-49992",
+    "plugin": "LearnPress",
+    "score": 7.1,
+    "severity": "HIGH",
+    "type": "Reflected XSS",
+    "cat": "Reflected XSS",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:L",
+    "unauth": true,
+    "pub": "2025-10-22",
+    "year": "2025",
+    "desc": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in ThimPress LearnPress Export Import learnpress-import-export allows Reflected XSS.This issue affects LearnPress Export Import: from n/a through <= 4.0.9.",
+    "cna": "audit@patchstack.com",
+    "refs": [
+      "https://patchstack.com/database/Wordpress/Plugin/learnpress-import-export/vulnerability/wordpress-learnpress-export-import-plugin-4-0-8-cross-site-scripting-xss-vulnerability?_s_id=cve"
+    ]
+  },
+  {
+    "cve": "CVE-2025-60200",
+    "plugin": "LearnPress",
+    "score": 7.5,
+    "severity": "HIGH",
+    "type": "Local File Inclusion",
+    "cat": "File Inclusion / Read",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
+    "unauth": true,
+    "pub": "2025-11-06",
+    "year": "2025",
+    "desc": "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion') vulnerability in ThimPress LearnPress Export Import learnpress-import-export allows PHP Local File Inclusion.This issue affects LearnPress Export Import: from n/a through <= 4.1.2.",
+    "cna": "audit@patchstack.com",
+    "refs": [
+      "https://patchstack.com/database/Wordpress/Plugin/learnpress-import-export/vulnerability/wordpress-learnpress-export-import-plugin-4-0-9-local-file-inclusion-vulnerability?_s_id=cve"
+    ]
+  },
+  {
+    "cve": "CVE-2026-24361",
+    "plugin": "LearnPress",
+    "score": 6.5,
+    "severity": "MEDIUM",
+    "type": "Stored XSS",
+    "cat": "Stored XSS",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L",
+    "unauth": false,
+    "pub": "2026-01-22",
+    "year": "2026",
+    "desc": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in ThimPress LearnPress \u2013 Course Review learnpress-course-review allows Stored XSS.This issue affects LearnPress \u2013 Course Review: from n/a through <= 4.1.9.",
+    "cna": "audit@patchstack.com",
+    "refs": [
+      "https://patchstack.com/database/Wordpress/Plugin/learnpress-course-review/vulnerability/wordpress-learnpress-course-review-plugin-4-1-9-cross-site-scripting-xss-vulnerability?_s_id=cve"
+    ]
+  },
+  {
+    "cve": "CVE-2026-1787",
+    "plugin": "LearnPress",
+    "score": 4.8,
+    "severity": "MEDIUM",
+    "type": "Sensitive Information Disclosure",
+    "cat": "Information Disclosure",
+    "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L",
+    "unauth": true,
+    "pub": "2026-02-21",
+    "year": "2026",
+    "desc": "The LearnPress Export Import \u2013 WordPress extension for LearnPress plugin for WordPress is vulnerable to unauthorized loss of data due to a missing capability check on the 'delete_migrated_data' function in all versions up to, and including, 4.1.0. This makes it possible for unauthenticated attackers to delete course that have been migrated from Tutor LMS. The Tutor LMS plugin must be installed and activated in order to exploit the vulnerability.",
+    "cna": "security@wordfence.com",
+    "refs": [
+      "https://plugins.trac.wordpress.org/browser/learnpress-import-export/tags/4.1.0/inc/Migration/Controllers/TutorMigrationController.php#L55",
+      "https://plugins.trac.wordpress.org/changeset/3458589/",
+      "https://www.wordfence.com/threat-intel/vulnerabilities/id/7bde915d-092a-452b-a0e0-ce5c2ce203dc?source=cve"
+    ]
+  },
+  {
+    "cve": "CVE-2026-12230",
+    "plugin": "LearnPress",
+    "score": 6.4,
+    "severity": "MEDIUM",
+    "type": "Stored XSS",
+    "cat": "Stored XSS",
+    "vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N",
+    "unauth": false,
+    "pub": "2026-09-08",
+    "year": "2026",
+    "desc": "The LearnPress \u2013 WordPress LMS Plugin for Create and Sell Online Courses plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'layout_custom_css' parameter in all versions up to, and including, 4.3.9.1 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with contributor-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.",
+    "cna": "security@wordfence.com",
+    "refs": [
+      "https://plugins.trac.wordpress.org/browser/learnpress/tags/4.3.4/inc/ExternalPlugin/Elementor/Widgets/Instructor/ListInstructorsElementor.php#L45",
+      "https://plugins.trac.wordpress.org/browser/learnpress/tags/4.3.4/inc/ExternalPlugin/Elementor/Widgets/Instructor/ListInstructorsElementor.php#L82",
+      "https://plugins.trac.wordpress.org/browser/learnpress/tags/4.4.0/inc/ExternalPlugin/Elementor/Widgets/Instructor/ListInstructorsElementor.php",
+      "https://www.wordfence.com/threat-intel/vulnerabilities/id/9f662888-c388-4191-bda9-b8a22d63cb3f?source=cve"
+    ]
   }
 ]

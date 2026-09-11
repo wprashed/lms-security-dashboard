@@ -49,86 +49,108 @@ new_cves_found = []
 
 for canonical_name, keyword in queries:
     log(f"Checking NVD feed for {canonical_name}...")
-    url = f"https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch={urllib.parse.quote(keyword)}&resultsPerPage=30"
+    url = f"https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch={urllib.parse.quote(keyword)}&resultsPerPage=200"
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'})
     
+    # Retry with backoff in case of NVD rate limiting (429)
+    resp_data = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=25) as resp:
+                resp_data = json.loads(resp.read().decode('utf-8'))
+                break
+        except Exception as e:
+            log(f"  NVD query attempt {attempt+1} for {canonical_name} notice: {e}")
+            time.sleep(8)
+
+    if not resp_data:
+        log(f"  Warning: Could not fetch new NVD data for {canonical_name}, proceeding with current records.")
+        continue
+
     try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            data = json.loads(resp.read().decode('utf-8'))
-            vulns = data.get('vulnerabilities', [])
-            log(f"  Received {len(vulns)} items from NVD for {canonical_name}.")
+        vulns = resp_data.get('vulnerabilities', [])
+        log(f"  Received {len(vulns)} items from NVD for {canonical_name}.")
 
-            for item in vulns:
-                cve_obj = item.get('cve', {})
-                cve_id = cve_obj.get('id', '')
-                if not cve_id:
-                    continue
+        for item in vulns:
+            cve_obj = item.get('cve', {})
+            cve_id = cve_obj.get('id', '')
+            if not cve_id:
+                continue
 
-                if cve_id in existing_cves:
-                    continue
+            if cve_id in existing_cves:
+                continue
 
-                # Filter out third-party false positives
-                desc_en = ''
-                for d in cve_obj.get('descriptions', []):
-                    if d.get('lang') == 'en':
-                        desc_en = d.get('value', '')
-                        break
-                desc_lower = desc_en.lower()
+            # Filter out third-party false positives
+            desc_en = ''
+            for d in cve_obj.get('descriptions', []):
+                if d.get('lang') == 'en':
+                    desc_en = d.get('value', '')
+                    break
+            desc_lower = desc_en.lower()
 
-                # Scope check
-                if canonical_name == 'LearnDash' and ('uncanny' in desc_lower or 'powerpack' in desc_lower or 'gamipress' in desc_lower or 'wisdm' in desc_lower):
-                    continue
-                if canonical_name == 'Tutor LMS' and ('certificate customizer' in desc_lower or 'export import' in desc_lower):
-                    continue
+            # Scope check
+            if canonical_name == 'LearnDash' and ('uncanny' in desc_lower or 'powerpack' in desc_lower or 'gamipress' in desc_lower or 'wisdm' in desc_lower or 'faizaan' in desc_lower):
+                continue
+            if canonical_name == 'Tutor LMS' and ('certificate customizer' in desc_lower or ('export import' in desc_lower and 'tutor lms' not in desc_lower)):
+                continue
 
-                # Parse CVSS
-                cvss_score = 0.0
-                cvss_sev = 'UNKNOWN'
-                vector_str = ''
-                attack_vec = 'NETWORK'
-                privs = 'NONE'
+            # Parse CVSS
+            cvss_score = 0.0
+            cvss_sev = 'UNKNOWN'
+            vector_str = ''
+            attack_vec = 'NETWORK'
+            privs = 'NONE'
 
-                metrics = cve_obj.get('metrics', {})
-                if 'cvssMetricV31' in metrics and metrics['cvssMetricV31']:
-                    d = metrics['cvssMetricV31'][0].get('cvssData', {})
-                    cvss_score = d.get('baseScore', 0.0)
-                    cvss_sev = d.get('baseSeverity', 'UNKNOWN')
-                    vector_str = d.get('vectorString', '')
-                    privs = d.get('privilegesRequired', 'NONE')
-                elif 'cvssMetricV30' in metrics and metrics['cvssMetricV30']:
-                    d = metrics['cvssMetricV30'][0].get('cvssData', {})
-                    cvss_score = d.get('baseScore', 0.0)
-                    cvss_sev = d.get('baseSeverity', 'UNKNOWN')
-                    vector_str = d.get('vectorString', '')
-                    privs = d.get('privilegesRequired', 'NONE')
+            metrics = cve_obj.get('metrics', {})
+            if 'cvssMetricV31' in metrics and metrics['cvssMetricV31']:
+                d = metrics['cvssMetricV31'][0].get('cvssData', {})
+                cvss_score = d.get('baseScore', 0.0)
+                cvss_sev = d.get('baseSeverity', 'UNKNOWN')
+                vector_str = d.get('vectorString', '')
+                privs = d.get('privilegesRequired', 'NONE')
+            elif 'cvssMetricV30' in metrics and metrics['cvssMetricV30']:
+                d = metrics['cvssMetricV30'][0].get('cvssData', {})
+                cvss_score = d.get('baseScore', 0.0)
+                cvss_sev = d.get('baseSeverity', 'UNKNOWN')
+                vector_str = d.get('vectorString', '')
+                privs = d.get('privilegesRequired', 'NONE')
 
-                # Vuln category
-                cat = 'Other'
-                vtype = 'Other'
-                if 'sql' in desc_lower:
-                    cat = 'SQL Injection'
-                    vtype = 'SQL Injection'
-                elif 'remote code execution' in desc_lower or 'command injection' in desc_lower or 'rce' in desc_lower:
-                    cat = 'Remote Code Execution'
-                    vtype = 'Remote Code Execution'
-                elif 'stored cross-site' in desc_lower or 'stored xss' in desc_lower:
-                    cat = 'Stored XSS'
-                    vtype = 'Stored XSS'
-                elif 'cross-site' in desc_lower or 'xss' in desc_lower:
-                    cat = 'Cross-Site Scripting (XSS)'
-                    vtype = 'Cross-Site Scripting (XSS)'
-                elif 'broken access' in desc_lower or 'missing authorization' in desc_lower:
-                    cat = 'Broken Access Control'
-                    vtype = 'Broken Access Control'
-                elif 'insecure direct object' in desc_lower or 'idor' in desc_lower:
-                    cat = 'IDOR'
-                    vtype = 'IDOR'
-                elif 'authentication bypass' in desc_lower:
-                    cat = 'Authentication Bypass'
-                    vtype = 'Authentication Bypass'
-                elif 'sensitive information' in desc_lower:
-                    cat = 'Information Disclosure'
-                    vtype = 'Sensitive Information Disclosure'
+            # Vuln category
+            cat = 'Other'
+            vtype = 'Other'
+            if 'sql' in desc_lower:
+                cat = 'SQL Injection'
+                vtype = 'SQL Injection'
+            elif 'file type upload' in desc_lower or 'unrestricted file upload' in desc_lower or 'arbitrary file upload' in desc_lower:
+                cat = 'Arbitrary File Upload'
+                vtype = 'Arbitrary File Upload'
+            elif 'remote code execution' in desc_lower or 'command injection' in desc_lower or 'rce' in desc_lower:
+                cat = 'Remote Code Execution'
+                vtype = 'Remote Code Execution'
+            elif 'file inclusion' in desc_lower or 'include/require' in desc_lower:
+                cat = 'File Inclusion / Read'
+                vtype = 'Local File Inclusion'
+            elif 'stored cross-site' in desc_lower or 'stored xss' in desc_lower:
+                cat = 'Stored XSS'
+                vtype = 'Stored XSS'
+            elif 'reflected cross-site' in desc_lower or 'reflected xss' in desc_lower:
+                cat = 'Reflected XSS'
+                vtype = 'Reflected XSS'
+            elif 'cross-site' in desc_lower or 'xss' in desc_lower:
+                cat = 'Cross-Site Scripting (XSS)'
+                vtype = 'Cross-Site Scripting (XSS)'
+            elif 'authorization bypass' in desc_lower or 'broken access' in desc_lower or 'missing authorization' in desc_lower:
+                cat = 'Broken Access Control'
+                vtype = 'Authorization Bypass / Broken Access Control'
+            elif 'insecure direct object' in desc_lower or 'idor' in desc_lower:
+                cat = 'IDOR'
+                vtype = 'Insecure Direct Object Reference'
+            elif 'authentication bypass' in desc_lower:
+                cat = 'Authentication Bypass'
+                vtype = 'Authentication Bypass'
+            elif 'sensitive information' in desc_lower or 'unauthorized loss of data' in desc_lower or 'data disclosure' in desc_lower:
+                cat = 'Information Disclosure'
+                vtype = 'Sensitive Information Disclosure'
 
                 pub_date = cve_obj.get('published', '')[:10] or datetime.now().strftime("%Y-%m-%d")
                 year = pub_date[:4]
